@@ -5,15 +5,14 @@ $dbname = 'dash_seguros';
 $user = 'root';
 $pass = '';
 
-try{
+try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //echo "Conexión exitosa a la base de datos.";
-
-} catch(PDOException $e){
-    die(json_decode([
+    //wecho "conexion exitosa";
+} catch(PDOException $e) {
+    die(json_encode([
         'success' => false,
-        'message' => 'Error de conexion'. $e->getMessage()
+        'message' => 'Error de conexión: ' . $e->getMessage()
     ]));
 }
 
