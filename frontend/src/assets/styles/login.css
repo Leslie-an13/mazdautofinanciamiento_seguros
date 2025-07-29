@@ -1,123 +1,156 @@
-
-.form-container {
-  width: 420px;
-  border-radius: 0.75rem;
-  background-color: rgba(17, 24, 39, 1);
-  padding: 2rem;
-  color: rgba(243, 244, 246, 1);
-  margin-top: 110px;
+/* From Uiverse.io by Smit-Prajapati */ 
+.container {
+  max-width: 330px;
+  background: #F8F9FD;
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+  border-radius: 40px;
+  padding: 25px 35px;
+  border: 5px solid rgb(255, 255, 255);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+  margin: 20px;
+  margin-top: 150px;
 }
 
-.title {
+.heading {
   text-align: center;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  font-weight: 700;
+  font-weight: 900;
+  font-size: 30px;
+  color: rgb(16, 137, 211);
 }
 
 .form {
-  margin-top: 1.5rem;
+  margin-top: 20px;
 }
 
-.input-group {
-  margin-top: 0.25rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.input-group label {
-  display: block;
-  color: rgba(156, 163, 175, 1);
-  margin-bottom: 4px;
-}
-
-.input-group input {
+.form .input {
   width: 100%;
-  border-radius: 0.375rem;
-  border: 1px solid rgba(55, 65, 81, 1);
-  outline: 0;
-  background-color: rgba(17, 24, 39, 1);
-  padding: 0.75rem 1rem;
-  color: rgba(243, 244, 246, 1);
-}
-
-.input-group input:focus {
-  border-color: rgba(167, 139, 250);
-}
-
-.forgot {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  color: rgba(156, 163, 175,1);
-  margin: 8px 0 14px 0;
-}
-
-.forgot a,.signup a {
-  color: rgba(243, 244, 246, 1);
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.forgot a:hover, .signup a:hover {
-  text-decoration: underline rgba(167, 139, 250, 1);
-}
-
-.sign {
-  display: block;
-  width: 100%;
-  background-color: rgba(167, 139, 250, 1);
-  padding: 0.75rem;
-  text-align: center;
-  color: rgba(17, 24, 39, 1);
+  background: white;
   border: none;
-  border-radius: 0.375rem;
-  font-weight: 600;
+  padding: 15px 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+  box-shadow: #cff0ff 0px 10px 10px -5px;
+  border-inline: 2px solid transparent;
 }
 
-.social-message {
-  display: flex;
-  align-items: center;
-  padding-top: 1rem;
+.form .input::-moz-placeholder {
+  color: rgb(170, 170, 170);
 }
 
-.line {
-  height: 1px;
-  flex: 1 1 0%;
-  background-color: rgba(55, 65, 81, 1);
+.form .input::placeholder {
+  color: rgb(170, 170, 170);
 }
 
-.social-message .message {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  color: rgba(156, 163, 175, 1);
+.form .input:focus {
+  outline: none;
+  border-inline: 2px solid #12B1D1;
 }
 
-.social-icons {
+.form .forgot-password {
+  display: block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.form .forgot-password a {
+  font-size: 11px;
+  color: #0099ff;
+  text-decoration: none;
+}
+
+.form .login-button {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+  color: white;
+  padding-block: 15px;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.form {
+  transform: scale(1.03);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+}
+
+.form  {
+  transform: scale(0.95);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+}
+
+.social-account-container {
+  margin-top: 25px;
+}
+
+.social-account-container .title {
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  color: rgb(170, 170, 170);
+}
+
+.social-account-container .social-accounts {
+  width: 100%;
   display: flex;
   justify-content: center;
+  gap: 15px;
+  margin-top: 5px;
 }
 
-.social-icons .icon {
-  border-radius: 0.125rem;
-  padding: 0.75rem;
-  border: none;
-  background-color: transparent;
-  margin-left: 8px;
+.social-account-container .social-accounts .social-button {
+  background: linear-gradient(45deg, rgb(0, 0, 0) 0%, rgb(112, 112, 112) 100%);
+  border: 5px solid white;
+  padding: 5px;
+  border-radius: 50%;
+  width: 40px;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 12px 10px -8px;
+  transition: all 0.2s ease-in-out;
 }
 
-.social-icons .icon svg {
-  height: 1.25rem;
-  width: 1.25rem;
-  fill: #fff;
+.social-account-container .social-accounts .social-button .svg {
+  fill: white;
+  margin: auto;
 }
 
-.signup {
+.social-account-container .social-accounts .social-button:hover {
+  transform: scale(1.2);
+}
+
+.social-account-container .social-accounts .social-button:active {
+  transform: scale(0.9);
+}
+
+.agreement {
+  display: block;
   text-align: center;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  color: rgba(156, 163, 175, 1);
+  margin-top: 15px;
+}
+
+.agreement a {
+  text-decoration: none;
+  color: #0099ff;
+  font-size: 9px;
+}
+
+.body {
+  background-image: url('/img/hombre-de-negocios-abre-la-puerta.jpg');
+  background-size: cover;      /* cubre todo el fondo */
+  background-position: center; /* centrado */
+  background-repeat: no-repeat;
+  height: 100vh;               /* asegura altura completa */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }

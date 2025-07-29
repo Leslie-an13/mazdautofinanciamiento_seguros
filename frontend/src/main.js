@@ -5,6 +5,11 @@ import App from './App.vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/styles/login.css'
 import './assets/styles/sidebar.css'
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import './assets/styles/uploadFile.css'
+
+
+
 
 // CoreUI
 import CoreuiVue from '@coreui/vue'
