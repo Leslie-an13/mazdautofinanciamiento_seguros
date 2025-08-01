@@ -35,6 +35,7 @@ if($result){
 
     $_SESSION['user_id'] = $result['idUser'];
     $_SESSION['username'] = $result['name'] . ' '. $result['paternal_last_name'] . ' ' .$result['maternal_last_name'] ;
+    $_SESSION['role'] = $result['role'];
     echo json_encode([
         'success' => true,
         'message' => 'Inicio de sesión correcto',

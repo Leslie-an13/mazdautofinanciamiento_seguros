@@ -1,0 +1,39 @@
+#preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Fondo con degradado negro + imagen */
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+                  url('img/mazdautofin.jpg') no-repeat center center;
+      background-size: cover;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1s ease;
+    }
+    
+    .loader {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      box-sizing: border-box;
+      border-top: 8px solid #fff;
+      border-left: 8px solid #fff;
+      border-right: 8px solid transparent;
+      animation: loader .7s infinite linear;
+    }
+    
+    @keyframes loader {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    body.loaded #preloader {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
