@@ -2,9 +2,9 @@
 <template>
 
     <div class="col-lg-8 mx-auto">
-        <div class="card shawdow rounded-15" style="background-color: rgb(148, 148, 148); margin-top: 140px; border: 3px solid rgb(48, 48, 48); height: 465px;">
+        <div class="card shawdow rounded-15" style="background-color: rgb(148, 148, 148); margin-top: 120px; border: 3px solid rgb(48, 48, 48); height: 465px;">
             <div class="card-header min-h-6px d-flex justify-content-around">
-                <span class="text-white">Subir base AON</span>
+                <span class="text-white text-uppercase fw-bolder fs-6">Subir base AON</span>
                 <span class="text-white text-uppercase fw-bolder fs-6">historial</span>
             </div>
             <div class="card-body">
@@ -46,11 +46,11 @@
 
                     </div>
                     <div class="col-lg-6">
-                        <i class="bi bi-circle me-2" style="color:blue;"></i>
-                        <span class="text-white">Usuario ha subido el archivo 2025-29-07 10:38:08</span>
+                        <i class="bi bi-circle me-2" style="color: red;"></i>
+                        <span class="text-white" v-text="uploadFile"></span>
                         <br>
-                        <i class="bi bi-circle me-2" style="color:blue;"></i>
-                        <span class="text-white">Usuario ha aprobado el archivo 2025-29-07 10:48:08</span>
+                        <i class="bi bi-circle me-2" style="color:red;"></i>
+                        <span class="text-white" v-text="approvedFile"></span>
                     </div>
                 </div>
                 
@@ -67,10 +67,13 @@
     user: String
 })*/
 
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import Swal from 'sweetalert2'
 
 const selectedFileName = ref('')
+
+const uploadFile = ref('');
+const approvedFile = ref('');
 
 function selectUpload(event){
     let file =  event.target.files[0];
@@ -79,7 +82,6 @@ function selectUpload(event){
         selectedFileName.value  =  file.name
     }
 
-
 }
 
 function validations(){
@@ -87,7 +89,7 @@ function validations(){
     let select1 = document.getElementById('selectAp').value;
     let select = document.getElementById('selectAp');
     let textSelect = select.options[select.selectedIndex].text;
-
+    let valid = true;
     if(file == '' || file == undefined){
         Swal.fire({
             toast: true,
@@ -118,11 +120,10 @@ function validations(){
 
     questionSave(textSelect, file);
 
-
 }
 
 function questionSave(textSelect, file){
-    debugger
+
     Swal.fire({
         title: '&iquest;Est&aacute;s seguro?',
         text: "Se aprobara el archivo",
@@ -142,8 +143,7 @@ function questionSave(textSelect, file){
 }
 
 function saveInfoBd(textSelect, file){
-    debugger
-
+   
      Swal.fire({
         title: "Procesando...",
         text: "Por favor, espera mientras se procesa la informacion.",
@@ -158,7 +158,7 @@ function saveInfoBd(textSelect, file){
     formData.append('files',file);
     formData.append('textPolicy', textSelect);
 
-    fetch('/api/insertHistory/insertBdAon.php', {
+    fetch('/api/getPolicy/insertBdAon.php', {
         method: 'POST',
         body: formData
     })
@@ -190,5 +190,28 @@ function saveInfoBd(textSelect, file){
 
 
 }
+
+
+onBeforeMount(async() =>{
+    const response = await fetch('/api/getPolicy/historyPolicy.php', {
+        method: 'GET'
+    }).then(response =>{
+        if (!response.ok) {
+            throw new Error('Respuesta no OK del servidor: ' + response.status);
+        }
+        return response.json();
+    }).then(response =>{
+
+        if(response.success){
+            uploadFile.value = response.history[0].file_upload_date;
+            approvedFile.value = response.history[0].user_file_date
+        
+        }
+    })
+
+
+})
+
+
 
 </script>

@@ -4,6 +4,9 @@ import Login from '../views/Login.vue'
 import Dashboard from '../views/Dashboard.vue'
 import MainLayout from '../views/MainLayout.vue'
 import DamagePolicy from '../views/DamagePolicy.vue';
+import PolicyDocument from '../views/PolicyDocument.vue';
+import Users from '../views/Users.vue';
+import { currentUser } from '../auth';
 
 
 const routes = [
@@ -19,11 +22,38 @@ const routes = [
   },
   { path: '/damagePolicy', component: DamagePolicy,
     component: MainLayout,
-    meta: { requiresAuth: true},
+    meta: { 
+      requiresAuth: true,
+      role: 'admin'
+    },
     children: [{
       path: '',
       component: DamagePolicy
     }]
+  },
+  { path: '/policyDocument', component: PolicyDocument,
+    component: MainLayout,
+    meta: {
+      requiresAuth: true,
+      role: 'admin'
+    },
+    children: [{
+      path: '',
+      component: PolicyDocument
+    }]
+  },
+  { path: '/users', component: Users,
+    component: MainLayout,
+    meta: {
+      requiresAuth: true,
+      role: 'admin'
+    },
+    children: [{
+      path: '',
+      component: Users
+    }]
+
+
   }
 ]
 
@@ -34,14 +64,13 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
-  const user = localStorage.getItem('user')
-
-  if (to.meta.requiresAuth && !user) {
+  if (to.meta.requiresAuth && !currentUser.value) {
     next('/login')
-  } else if (to.path === '/login' && user) {
-    next('/dashboard')
+  } else if (to.meta.role && currentUser.value?.role !== to.meta.role) {
+    alert('No tienes permiso para entrar aquí')
+    next(false) // bloquea el acceso
   } else {
-    next()
+    next() // deja pasar
   }
 })
 

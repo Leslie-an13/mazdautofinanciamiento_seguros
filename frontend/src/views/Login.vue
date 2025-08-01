@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { login } from '../auth'
+import { login, fetchCurrentUser } from '../auth'
 
 export default {
   data() {
@@ -65,7 +65,7 @@ export default {
                 console.log('JSON parseado:', data);
 
                 if(data.success){
-                    login({ user: this.user })
+                    await fetchCurrentUser()
                     this.$router.push('/dashboard');
 
                 } else{
