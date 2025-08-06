@@ -44,7 +44,6 @@ export default {
   },
   methods: {
     async validateUser(){
-
         try{
             const res = await fetch('/api/login.php', {
                 method: 'POST',
@@ -62,7 +61,6 @@ export default {
           
             try{
                 const data = JSON.parse(text);
-                console.log('JSON parseado:', data);
 
                 if(data.success){
                     await fetchCurrentUser()

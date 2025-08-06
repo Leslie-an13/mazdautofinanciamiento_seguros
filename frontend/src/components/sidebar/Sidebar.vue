@@ -17,7 +17,7 @@
       <li class="nav-item mb-1 ">
         <RouterLink to="/policyDocument" class="nav-link">
           <i class="bi bi-file-earmark-pdf text-white me-2"></i>
-          <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">Poliza comprobante</span>
+          <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">Pago comprobante polizas</span>
           
         </RouterLink>
       </li>
