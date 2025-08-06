@@ -5,12 +5,16 @@ import router from './router'
 import { fetchCurrentUser, currentUser } from './auth'
 import { loading } from './loadingStore'
 // Bootstrap y tu estilo personalizado
-import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/styles/login.css'
 import './assets/styles/sidebar.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './assets/styles/uploadFile.css'
 import './assets/styles/preloader.css'
+import './assets/styles/uploadPay.css'
+import './assets/styles/usersBackground.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap'
+
 // CoreUI
 import CoreuiVue from '@coreui/vue'
 import '@coreui/coreui/dist/css/coreui.min.css'

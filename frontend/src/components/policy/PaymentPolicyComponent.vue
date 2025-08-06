@@ -1,0 +1,118 @@
+<template>
+    <div class="col-lg-9 mx-auto" style="margin-top: 100px;">
+        <div class="card shadow rounded-10">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-2 mx-auto " v-if="routetofile.existe">
+                        
+                        <div class="text-center mt-3 mb-3">
+                            <span class="fw-bolder text-uppercase fs-6">descargar base aon</span>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <a class="download-btn pixel-corners" :href="downloadUrl">
+                                <div class="button-content">
+                                    <div class="svg-container">
+                                    <svg
+                                        class="download-icon"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                        d="M19.479 10.092c-.212-3.951-3.473-7.092-7.479-7.092-4.005 0-7.267 3.141-7.479 7.092-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.521-5.408zm-7.479 6.908l-4-4h3v-4h2v4h3l-4 4z"
+                                        ></path>
+                                    </svg>
+                                    </div>
+                                    <div class="text-container">
+                                    <div class="text">Download</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+
+                    </div>
+                    <div class="col-lg-5 mx-auto">
+
+                        <div class="text-center mt-3 mb-3">
+                            <span class="text-uppercase fw-bolder fs-7">
+                                subir comprobante de pago
+                            </span>
+                        </div>
+
+                        <div class="containerFile mx-auto" style="margin-top: 10px;">
+                            <div class="folder">
+                            <div class="front-side">
+                            <div class="tip"></div>
+                            <div class="cover"></div>
+                            </div>
+                            <div class="back-side cover"></div>
+                        </div>
+                            <label class="custom-file-upload">
+                                <input class="title" type="file" @change="selectUpload" id="payPolicy"/>
+                                Selecciona archivo...
+                                  <p v-if="selectedFileName" v-text="selectedFileName" class="text-white fw-bolder"></p>
+                            </label>
+                          
+                        </div>
+
+
+                        <div class="d-flex justify-content-center mt-5 mb-3">
+                            <select class="form-select form-select-sm w-75" aria-label="Small select example">
+                                <option value="0">Selecciona una opcion...</option>
+                                <option value="1">Aprobar</option>
+                                <option value="2">Rechazar</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-5">
+                            <button class="btn btn-sm btn-success" @onclick="savePay">
+                                <span class="text-white text-uppercase fw-bolder">
+                                    guardar
+                                </span>
+                            </button>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-5 mx-auto">
+                        <div class="text-center">
+                            <span class="text-uppercase fs-6 fw-bold mb-3 mt-5">
+                                historial
+                            </span>
+                        </div>
+                        <i class="bi bi-circle me-2" style="color: red;"></i>
+                        <span>El usuario descargo el archivo</span>
+                       <!--- <span class="text-white" v-text="uploadFile"></span>-->
+                        <br>
+                        <i class="bi bi-circle me-2" style="color:red;"></i>
+                        <span class="text-dark">El usuario subio el archivo</span>
+                        <!--<span class="text-white" v-text="approvedFile"></span>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  routetofile: {
+    type: Object,
+    required: true
+  }
+
+});
+
+
+const downloadUrl = computed(() => {
+  if (!props.routetofile || !props.routetofile.route) return '';
+  const fileName = props.routetofile.route.split('/').pop(); 
+  debugger
+  return `http://localhost/mazdautofinanciamiento_seguros/backend/api/downloadFile.php?file=${fileName}`;
+});
+</script>

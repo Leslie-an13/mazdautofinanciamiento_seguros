@@ -1,16 +1,59 @@
 <template>
-  holis
+  <div  class="row imgFondo">
+    <PaymentPolicyComponent :routetofile="getFile" />
+  </div>
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+import PaymentPolicyComponent from '../components/policy/PaymentPolicyComponent.vue'
 
 export default {
   components: { 
+    PaymentPolicyComponent
   },
   data() {
     return {
-      name: 'Leslie'
+       getFile: {
+        existe: false,
+        route: ''
+      }
     }
+  },
+  methods: {
+    validateRoute() {
+     
+    }
+  },
+  mounted(){
+
+    fetch('/api/paymentReceipt/proof_of_payment.php', {
+        method: 'GET',
+    })
+    .then(response => {
+        console.log("Respuesta cruda:", response);
+        if (!response.ok) {
+            throw new Error('Respuesta no OK del servidor: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if(data.success){
+            
+          this.getFile.existe = true;
+          this.getFile.route = data.file
+            
+        } else {
+          this.getFile.existe = false;
+          this.getFile.route = '';
+        }
+    })
+    .catch(error => {
+        console.error('Error atrapado en catch:', error);
+        Swal.close();
+    });
+
+
   }
 }
 </script>
