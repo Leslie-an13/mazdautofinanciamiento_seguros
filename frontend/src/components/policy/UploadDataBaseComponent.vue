@@ -1,4 +1,3 @@
-
 <template>
 
     <div class="col-lg-8 mx-auto">

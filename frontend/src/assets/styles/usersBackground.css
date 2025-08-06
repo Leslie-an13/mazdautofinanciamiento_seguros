@@ -1,0 +1,7 @@
+.imgBackground {
+  background-image: url('/img/fondo_rojo_blanco.jpg'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+}
