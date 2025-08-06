@@ -22,16 +22,12 @@ if (empty($user) || empty($pass)) {
     exit;
 }
 
-$stmt = $pdo->prepare("SELECT * FROM add_users WHERE username = :user AND clave = :pass");
-$stmt->execute([
-    ':user' => $user,
-    ':pass' => $pass
-]);
-
+$stmt = $pdo->prepare("SELECT * FROM add_users WHERE username = :user");
+$stmt->execute([':user' => $user]);
 
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if($result){
+if($result && password_verify($pass, $result['clave'])){
 
     $_SESSION['user_id'] = $result['idUser'];
     $_SESSION['username'] = $result['name'] . ' '. $result['paternal_last_name'] . ' ' .$result['maternal_last_name'] ;

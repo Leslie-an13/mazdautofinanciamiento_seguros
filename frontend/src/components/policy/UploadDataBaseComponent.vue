@@ -1,7 +1,7 @@
 <template>
 
     <div class="col-lg-8 mx-auto">
-        <div class="card shawdow rounded-15" style="background-color: rgb(148, 148, 148); margin-top: 120px; border: 3px solid rgb(48, 48, 48); height: 465px;">
+        <div class="card shawdow rounded-15" style="background-color: rgb(148, 148, 148); margin-top: 100px; border: 3px solid rgb(48, 48, 48); height: 465px;">
             <div class="card-header min-h-6px d-flex justify-content-around">
                 <span class="text-white text-uppercase fw-bolder fs-6">Subir base AON</span>
                 <span class="text-white text-uppercase fw-bolder fs-6">historial</span>

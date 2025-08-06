@@ -46,7 +46,7 @@ if (isset($_FILES['files']) && isset($_POST['textPolicy'])) {
             $stmt_insert->execute([
                 $result['idUser'],
                 'El usuario ' . $nombreCompleto . ' ha cargado el archivo el ' . date('Y-m-d H:i:s'),
-                'El usuario ' . $nombreCompleto . ' aprobó el archivo el ' . date('Y-m-d H:i:s'),
+                'El usuario ' . $nombreCompleto . ' aprobo el archivo el ' . date('Y-m-d H:i:s'),
                 $targetFile,
                 $status_file
             ]);

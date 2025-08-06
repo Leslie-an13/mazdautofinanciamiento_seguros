@@ -30,6 +30,7 @@ export async function fetchCurrentUser() {
     const data = await res.json()
 
     if (data.logged_in) {
+      debugger
       currentUser.value = {
         id: data.user_id,
         name: data.username,

@@ -181,23 +181,22 @@ function validateInputs(){
         return;
     }
 
-    const regex = /^[\w.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-
-    if (!regex.test(email.value)) {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!regex.test(valueEmail)) {
         showError.value = true
         Swal.fire({
-        icon: 'error',
-        title: 'Correo inválido',
-        text: 'Por favor ingresa un correo electrónico válido.'
-        })
-    } else {
-        showError.value = false
-        Swal.fire({
-        icon: 'success',
-        title: 'Correo válido',
-        text: 'El correo electrónico es correcto.'
-        })
-    }
+            toast: true,
+            position: 'top-end', 
+            icon: 'error',     
+            title: 'Invalido debes escribir un correo valido',
+            showConfirmButton: false,
+            timer: 3000, 
+            timerProgressBar: true
+        });
+        valid = false;
+        return 
+        
+    } 
 
 
     if(valueNames == "" || valueNames == ""){
@@ -290,6 +289,7 @@ function saveUserCreate(){
     let valueNames = document.getElementById('last_nameValue').value;
     let valueMaternal = document.getElementById('maternalValue').value;
     let valueRol = document.getElementById('selectRolValue').value;
+    let textRol = valueRol.options[valueRol.selectedIndex].text;
     let valuePassword = document.getElementById('passValue').value;
 
     let formData = new FormData();
@@ -299,8 +299,8 @@ function saveUserCreate(){
     formData.append('valueEmail', valueEmail);
     formData.append('valueNames', valueNames);
     formData.append('valueMaternal', valueMaternal);
-    formData.append('valueRol', valueRol);
-    formData.append('valuePassword', ValuePassword);
+    formData.append('valueRol', textRol);
+    formData.append('valuePassword', valuePassword);
 
 
 
@@ -314,7 +314,7 @@ function saveUserCreate(){
     }); 
 
 
-    fetch('php/insertInEveAdj.php', {
+    fetch('/api/getUsers/createUser.php', {
         method: 'POST',
         body: formData
     })
@@ -326,6 +326,7 @@ function saveUserCreate(){
         return response.json();
     })
     .then(data => {
+        debugger
         if(data.success){
             
             Swal.fire({
@@ -333,14 +334,14 @@ function saveUserCreate(){
               title: "Datos insertados correctamente",
               showConfirmButton: true
             }).then(() => {
-              location.reload(); 
+              window.location.reload(); 
             });
             
         }
     })
     .catch(error => {
         console.error('Error atrapado en catch:', error);
-        swal.close();
+        Swal.close();
     });
 }
 

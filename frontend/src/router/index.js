@@ -24,7 +24,7 @@ const routes = [
     component: MainLayout,
     meta: { 
       requiresAuth: true,
-      role: 'admin'
+      role: ['admin', 'Gestor de siniestros']
     },
     children: [{
       path: '',
@@ -35,7 +35,7 @@ const routes = [
     component: MainLayout,
     meta: {
       requiresAuth: true,
-      role: 'admin'
+      role: ['admin', 'Gestor de siniestros']
     },
     children: [{
       path: '',
@@ -46,7 +46,7 @@ const routes = [
     component: MainLayout,
     meta: {
       requiresAuth: true,
-      role: 'admin'
+      role: ['admin']
     },
     children: [{
       path: '',
@@ -66,12 +66,11 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !currentUser.value) {
     next('/login')
-  } else if (to.meta.role && currentUser.value?.role !== to.meta.role) {
+  } else if ( to.meta.role && Array.isArray(to.meta.role) && !to.meta.role.includes(currentUser.value?.role)) {
     alert('No tienes permiso para entrar aquí')
     next(false) // bloquea el acceso
   } else {
     next() // deja pasar
   }
 })
-
 export default router
