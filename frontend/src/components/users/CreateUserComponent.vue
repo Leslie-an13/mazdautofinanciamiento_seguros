@@ -288,7 +288,7 @@ function saveUserCreate(){
     let valueEmail = document.getElementById('email').value;
     let valueNames = document.getElementById('last_nameValue').value;
     let valueMaternal = document.getElementById('maternalValue').value;
-    let valueRol = document.getElementById('selectRolValue').value;
+    let valueRol = document.getElementById('selectRolValue');
     let textRol = valueRol.options[valueRol.selectedIndex].text;
     let valuePassword = document.getElementById('passValue').value;
 
@@ -299,9 +299,9 @@ function saveUserCreate(){
     formData.append('valueEmail', valueEmail);
     formData.append('valueNames', valueNames);
     formData.append('valueMaternal', valueMaternal);
-    formData.append('valueRol', textRol);
+    formData.append('roleValue', textRol);
     formData.append('valuePassword', valuePassword);
-
+    debugger
 
 
     Swal.fire({

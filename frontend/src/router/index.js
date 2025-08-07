@@ -35,7 +35,7 @@ const routes = [
     component: MainLayout,
     meta: {
       requiresAuth: true,
-      role: ['admin', 'Gestor de siniestros']
+      role: ['admin', 'Tesorero']
     },
     children: [{
       path: '',

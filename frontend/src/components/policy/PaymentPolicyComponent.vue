@@ -51,16 +51,20 @@
                             <div class="back-side cover"></div>
                         </div>
                             <label class="custom-file-upload">
-                                <input class="title" type="file" @change="selectUpload" id="payPolicy"/>
+                                <input class="title" type="file" @change="selectUpload" 
+                                    accept=".pdf"
+                                    id="payPolicy"/>
                                 Selecciona archivo...
-                                  <p v-if="selectedFileName" v-text="selectedFileName" class="text-white fw-bolder"></p>
+                                  <p v-if="selectedFileName" v-text="selectedFileName" class="text-white fw-bolder" style="font-size: 8px;"></p>
                             </label>
                           
                         </div>
 
 
                         <div class="d-flex justify-content-center mt-5 mb-3">
-                            <select class="form-select form-select-sm w-75" aria-label="Small select example">
+                            <select class="form-select form-select-sm w-75" 
+                                    id="selectStatus"
+                                    aria-label="Small select example">
                                 <option value="0">Selecciona una opcion...</option>
                                 <option value="1">Aprobar</option>
                                 <option value="2">Rechazar</option>
@@ -68,7 +72,7 @@
                         </div>
 
                         <div class="d-flex justify-content-end mt-5">
-                            <button class="btn btn-sm btn-success" @onclick="savePay">
+                            <button class="btn btn-sm btn-success" @click="validateValues">
                                 <span class="text-white text-uppercase fw-bolder">
                                     guardar
                                 </span>
@@ -84,12 +88,10 @@
                             </span>
                         </div>
                         <i class="bi bi-circle me-2" style="color: red;"></i>
-                        <span>El usuario descargo el archivo</span>
-                       <!--- <span class="text-white" v-text="uploadFile"></span>-->
+                        <span class="text-dark" v-text="uploadFile"></span>
                         <br>
                         <i class="bi bi-circle me-2" style="color:red;"></i>
-                        <span class="text-dark">El usuario subio el archivo</span>
-                        <!--<span class="text-white" v-text="approvedFile"></span>-->
+                        <span class="text-dark" v-text="approvedFile"></span>
                     </div>
                 </div>
             </div>
@@ -98,7 +100,11 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref, onBeforeMount } from 'vue';
+import Swal from 'sweetalert2'
+
+const uploadFile = ref('');
+const approvedFile = ref('');
 
 const props = defineProps({
   routetofile: {
@@ -108,11 +114,122 @@ const props = defineProps({
 
 });
 
+const selectedFileName = ref('');
+
+function selectUpload(event){
+    let file =  event.target.files[0];
+
+    if(file){
+        selectedFileName.value  =  file.name
+    }
+}
+
+function validateValues(){
+  
+    let file = document.getElementById('payPolicy').files[0];
+    let select1 = document.getElementById('selectStatus').value;
+    let select = document.getElementById('selectStatus');
+    let textSelect = select.options[select.selectedIndex].text;
+    let valid = true;
+    if(file == '' || file == undefined){
+        Swal.fire({
+            toast: true,
+            position: 'top-end', 
+            icon: 'error',     
+            title: 'Invalido debes seleccionar un archivo',
+            showConfirmButton: false,
+            timer: 3000, 
+            timerProgressBar: true
+        });
+        valid = false;
+        return;
+    }  
+
+    if(select1 == "0"){
+        Swal.fire({
+            toast: true,
+            position: 'top-end', 
+            icon: 'error',     
+            title: 'Invalido debes seleccionar estatus',
+            showConfirmButton: false,
+            timer: 3000, 
+            timerProgressBar: true
+        });
+        valid = false;
+        return;
+    }
+
+    questionSave(textSelect, file);
+}
+
+
+function questionSave(textSelect, file){
+  
+    let formData = new FormData();
+    formData.append('func','saveThePaymentReceipt');
+    formData.append('status', textSelect);
+    formData.append('filePayment', file)
+
+
+    fetch('api/paymentReceipt/insertPaymentForPolicy.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        console.log("Respuesta cruda:", response);
+        if (!response.ok) {
+            throw new Error('Respuesta no OK del servidor: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if(data.success){
+            Swal.fire({
+              icon: "success",
+              title: "Datos insertados correctamente",
+              showConfirmButton: true
+            }).then(() => {
+              location.reload(); 
+            });
+            
+        }
+    })
+    .catch(error => {
+        //console.error('Error atrapado en catch:', error);
+        Swal.close();
+    });
+
+}
+
 
 const downloadUrl = computed(() => {
   if (!props.routetofile || !props.routetofile.route) return '';
   const fileName = props.routetofile.route.split('/').pop(); 
-  debugger
   return `http://localhost/mazdautofinanciamiento_seguros/backend/api/downloadFile.php?file=${fileName}`;
 });
+
+
+onBeforeMount(async() =>{
+    const response = await fetch('/api/paymentReceipt/paymentHistory.php', {
+        method: 'GET'
+    }).then(response =>{
+        if (!response.ok) {
+            throw new Error('Respuesta no OK del servidor: ' + response.status);
+        }
+        return response.json();
+    }).then(response =>{
+        debugger
+
+        if(response.success){
+            uploadFile.value = response.history[0].proof_upload_date;
+            approvedFile.value = response.history[0].user_approval_date;
+        
+        }
+    })
+
+
+})
+
+
+
 </script>

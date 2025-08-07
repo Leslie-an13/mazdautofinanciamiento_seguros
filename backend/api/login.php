@@ -30,7 +30,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 if($result && password_verify($pass, $result['clave'])){
 
     $_SESSION['user_id'] = $result['idUser'];
-    $_SESSION['username'] = $result['name'] . ' '. $result['paternal_last_name'] . ' ' .$result['maternal_last_name'] ;
+    $_SESSION['username'] = $result['names'] . ' '. $result['paternal_last_name'] . ' ' .$result['maternal_last_name'] ;
     $_SESSION['role'] = $result['role'];
     echo json_encode([
         'success' => true,
