@@ -1,5 +1,6 @@
 <template>
-    <div class="col-lg-9 mx-auto" style="margin-top: 100px;">
+
+    <div class="col-lg-9 mx-auto" style="margin-top: 60px;">
         <div class="card shadow rounded-10">
             <div class="card-body">
                 <div class="row">
@@ -201,15 +202,15 @@ function questionSave(textSelect, file){
 
 }
 
-
 const downloadUrl = computed(() => {
   if (!props.routetofile || !props.routetofile.route) return '';
   const fileName = props.routetofile.route.split('/').pop(); 
-  return `http://localhost/mazdautofinanciamiento_seguros/backend/api/downloadFile.php?file=${fileName}`;
+  return `http://localhost/mazdautofinanciamiento_seguros/backend/api/getRouteFiles/downloadFile.php?file=${fileName}`;
 });
 
 
 onBeforeMount(async() =>{
+  
     const response = await fetch('/api/paymentReceipt/paymentHistory.php', {
         method: 'GET'
     }).then(response =>{
@@ -218,8 +219,7 @@ onBeforeMount(async() =>{
         }
         return response.json();
     }).then(response =>{
-        debugger
-
+      
         if(response.success){
             uploadFile.value = response.history[0].proof_upload_date;
             approvedFile.value = response.history[0].user_approval_date;

@@ -6,8 +6,11 @@
           <span class="navbar-brand mb-0 h1">Mi Dashboard</span>
 
           <div class="d-flex align-items-center gap-2">
-            <p v-if="currentUser" class="mb-0 text-white text-uppercase">{{ currentUser }}</p>
-            <button class="btn btn-outline-light btn-sm" @click="handleLogout">Cerrar sesión</button>
+            <i class="bi bi-person-circle text-white"></i>
+            <p v-if="currentUser" class="mb-0 text-white text-uppercase" style="font-size: 12px;">
+              {{ currentUser }}
+            </p>
+            <button class="btn btn-outline-light btn-sm" style="font-size: 12px;" @click="handleLogout">Cerrar sesión</button>
           </div>
         
       </div>

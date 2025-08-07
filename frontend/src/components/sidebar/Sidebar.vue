@@ -1,5 +1,5 @@
 <template>
-  <div class="vh-100 border-end text-white" style="width: 200px; background-color: rgb(122, 27, 27);">
+  <div class="vh-100 border-end text-white" style="width: 200px; background-color: rgb(85,0,8);">
     <ul class="nav flex-column">
       <li class="nav-item mb-1 ">
         <RouterLink to="/dashboard" class="nav-link">

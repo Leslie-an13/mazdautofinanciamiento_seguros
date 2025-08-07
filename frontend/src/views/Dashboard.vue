@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     validateUser(){
-      debugger
+
       alert('Validando usuario...')
     }
   }

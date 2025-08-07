@@ -1,4 +1,12 @@
 <template>
+   <!--title-->
+  <div style="background-color: rgb(222, 222, 222); height: 25px;">
+        <i class="bi bi-caret-right"></i>
+        <span class="text-uppercase fw-boldest" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',            'Lucida Sans', Arial, sans-serif; font-size: 11px;">
+            Usuarios
+        </span>
+  </div>
+
   <div class="imgBackground row">
     <!--Show all users-->
     <showUsersComponent @eventUsers="getEmitUser"></showUsersComponent>
@@ -40,7 +48,7 @@ export default {
       let userFound = values.users.find(u => u.idUser === values.idUser);
 
       if(userFound){
-        debugger
+       
         this.userToEdit = {
             names: userFound.names,
             paternal: userFound.paternal_last_name,
