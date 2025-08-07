@@ -1,4 +1,13 @@
 <template>
+  <!--title-->
+  <div style="background-color: rgb(222, 222, 222); height: 25px;">
+        <i class="bi bi-caret-right"></i>
+        <span class="text-uppercase fw-boldest" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',            'Lucida Sans', Arial, sans-serif; font-size: 11px;">
+            subir comprobante de pago poliza
+        </span>
+  </div>
+
+  <!--Content-->
   <div  class="row imgFondo">
     <PaymentPolicyComponent :routetofile="getFile" />
   </div>
@@ -26,7 +35,6 @@ export default {
     }
   },
   mounted(){
-
     fetch('/api/paymentReceipt/proof_of_payment.php', {
         method: 'GET',
     })
@@ -38,6 +46,7 @@ export default {
         return response.json();
     })
     .then(data => {
+
         if(data.success){
             
           this.getFile.existe = true;

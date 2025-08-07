@@ -59,13 +59,13 @@
                         <span class="text-dark" v-text="approvedFile"></span>
                     </div>
                     <!--Download file-->
-                    <div class="col-lg-2 mx-auto">
+                    <div class="col-lg-2 mx-auto" v-if="getRouteFile.exist">
                          <div class="text-center">
                             <span class="text-uppercase fw-boldest" style="font-size: 14px;">Descargar comprobante</span>
                         </div>
                         
                          <div class="d-flex justify-content-center mt-3">
-                            <a class="download-btn pixel-corners" :href="downloadUrl">
+                            <a class="download-btn pixel-corners" :href="downloadFile">
                                 <div class="button-content">
                                     <div class="svg-container">
                                     <svg
@@ -81,7 +81,7 @@
                                     </svg>
                                     </div>
                                     <div class="text-container">
-                                        <div class="text">Descargar</div>
+                                        <div class="text">Descargar pdf</div>
                                     </div>
                                 </div>
                             </a>
@@ -100,11 +100,15 @@
 
 <script setup>
 
-/*const propsDataBase =  defineProps({
-    user: String
-})*/
+const props = defineProps({
+  getRouteFile: {
+    type: Object,
+    required: true
+  }
 
-import { onBeforeMount, ref } from 'vue';
+});
+
+import { onBeforeMount, ref, computed} from 'vue';
 import Swal from 'sweetalert2'
 
 const selectFileName = ref('')
@@ -227,9 +231,11 @@ function saveInfoBd(textSelect, file){
 
 }
 
-function downloadUrl(){
-    debugger
-}
+const downloadFile = computed(() => {
+  if (!props.getRouteFile || !props.getRouteFile.route) return '';
+  const fileName = props.getRouteFile.route.split('/').pop(); 
+  return `http://localhost/mazdautofinanciamiento_seguros/backend/api/getRouteFiles/dowloand_file_payment.php?file=${fileName}`;
+});
 
 onBeforeMount(async() =>{
     const response = await fetch('/api/getPolicy/historyPolicy.php', {

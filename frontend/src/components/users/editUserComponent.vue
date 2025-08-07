@@ -125,7 +125,6 @@ function validateValues(userID){
     let email = document.getElementById('valuesEmail').value;
     let rol = document.getElementById('selectRolValue').value;
     let pass = document.getElementById('valuePass').value;
-    debugger
     let valid = true;
 
     if(user == "" || user == 0){
@@ -240,7 +239,6 @@ function editUser(userID){
     formData.append('role', textRol);
     formData.append('pass', pass );
     formData.append('userId', userID);
-    debugger
 
     Swal.fire({
         title: "Procesando...",

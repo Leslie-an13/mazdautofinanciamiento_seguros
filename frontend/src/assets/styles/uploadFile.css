@@ -249,7 +249,7 @@
 .stepper-controls {
   display: flex;
   justify-content: space-between;
-  margin-top: 32px;
+
 }
 
 .stepper-button {
@@ -270,7 +270,7 @@
 }
 
 .imgFondo {
-  background-image: url('/img/vector_negro_rojo.jpg'); 
+  background-image: url('/img/v_blanco_gris.jpg'); 
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

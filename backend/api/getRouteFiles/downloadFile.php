@@ -3,7 +3,7 @@ if (isset($_GET['file'])) {
 
     $file = basename($_GET['file']);
     $monthYear = date('m_Y');
-    $path = __DIR__ . "/uploads/base_aon/$monthYear/" . $file;
+    $path = __DIR__ . "/../uploads/base_aon/$monthYear/" . $file;
 
     if (file_exists($path)) {
         header('Content-Description: File Transfer');

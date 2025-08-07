@@ -301,9 +301,7 @@ function saveUserCreate(){
     formData.append('valueMaternal', valueMaternal);
     formData.append('roleValue', textRol);
     formData.append('valuePassword', valuePassword);
-    debugger
-
-
+    
     Swal.fire({
         title: "Procesando...",
         text: "Por favor, espera mientras se procesa la informacion.",
@@ -326,7 +324,6 @@ function saveUserCreate(){
         return response.json();
     })
     .then(data => {
-        debugger
         if(data.success){
             
             Swal.fire({
