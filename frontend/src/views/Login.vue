@@ -75,7 +75,7 @@ export default {
                         setTimeout(() => document.getElementById('username').classList.remove('border-danger'),3000);
                         document.getElementById('userInvalid').classList.remove('d-none');
                         setTimeout(() => document.getElementById('userInvalid').classList.add('d-none'),3000);
-                        debugger
+                 
 
                         document.getElementById('password').classList.add('border-danger', 'border', 'border-3');
                         setTimeout(() => document.getElementById('password').classList.remove('border-danger'),3000);

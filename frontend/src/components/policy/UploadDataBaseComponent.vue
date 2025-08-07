@@ -1,14 +1,14 @@
 <template>
 
-    <div class="col-lg-8 mx-auto">
-        <div class="card shawdow rounded-15" style="background-color: rgb(148, 148, 148); margin-top: 100px; border: 3px solid rgb(48, 48, 48); height: 465px;">
-            <div class="card-header min-h-6px d-flex justify-content-around">
-                <span class="text-white text-uppercase fw-bolder fs-6">Subir base AON</span>
-                <span class="text-white text-uppercase fw-bolder fs-6">historial</span>
-            </div>
+    <div class="col-lg-11 mx-auto">
+        <div class="card shawdow rounded-15" style="background-color: rgb(255,255,255); margin-top: 100px; border: 3px solid rgb(48, 48, 48); height: 465px;">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-6 border-2 border-white border-end">
+                    <!--Upload file-->
+                    <div class="col-lg-5 mx-auto border-2 border-seconday border-end">
+                        <div class="text-center">
+                            <span class="text-uppercase fw-boldest">Subir base AON</span>
+                        </div>
                         <div class="containerFile mx-auto" style="margin-top: 10px;">
                             <div class="folder">
                             <div class="front-side">
@@ -18,15 +18,17 @@
                             <div class="back-side cover"></div>
                         </div>
                             <label class="custom-file-upload">
-                                <input class="title" type="file" @change="selectUpload" id="dataBaseAon"/>
+                                <input class="title" type="file" 
+                                        accept=".xls, .xlsx"
+                                        @change="selectUpload" id="dataBaseAon"/>
                                 Selecciona archivo...
-                                  <p v-if="selectedFileName" v-text="selectedFileName" class="text-white fw-bolder"></p>
+                                  <p v-if="selectFileName" v-text="selectFileName" class="text-white fw-bolder"></p>
                             </label>
                           
                         </div>
 
                         <div class="text-center mt-5">
-                            <span class="text-white text-uppercase">aprobar archivo</span>
+                            <span class="text-dark text-uppercase">aprobar archivo</span>
                         </div>
 
                         <div class="d-flex justify-content-center mt-2">
@@ -44,12 +46,48 @@
                         </div>
 
                     </div>
-                    <div class="col-lg-6">
+
+                    <!--History file-->
+                    <div class="col-lg-5 mx-auto">
+                         <div class="text-center mb-3">
+                            <span class="text-uppercase fw-boldest">historial</span>
+                        </div>
                         <i class="bi bi-circle me-2" style="color: red;"></i>
-                        <span class="text-white" v-text="uploadFile"></span>
+                        <span class="text-dark" v-text="uploadFile"></span>
                         <br>
                         <i class="bi bi-circle me-2" style="color:red;"></i>
-                        <span class="text-white" v-text="approvedFile"></span>
+                        <span class="text-dark" v-text="approvedFile"></span>
+                    </div>
+                    <!--Download file-->
+                    <div class="col-lg-2 mx-auto">
+                         <div class="text-center">
+                            <span class="text-uppercase fw-boldest" style="font-size: 14px;">Descargar comprobante</span>
+                        </div>
+                        
+                         <div class="d-flex justify-content-center mt-3">
+                            <a class="download-btn pixel-corners" :href="downloadUrl">
+                                <div class="button-content">
+                                    <div class="svg-container">
+                                    <svg
+                                        class="download-icon"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                        d="M19.479 10.092c-.212-3.951-3.473-7.092-7.479-7.092-4.005 0-7.267 3.141-7.479 7.092-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.521-5.408zm-7.479 6.908l-4-4h3v-4h2v4h3l-4 4z"
+                                        ></path>
+                                    </svg>
+                                    </div>
+                                    <div class="text-container">
+                                        <div class="text">Descargar</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        
                     </div>
                 </div>
                 
@@ -69,7 +107,7 @@
 import { onBeforeMount, ref } from 'vue';
 import Swal from 'sweetalert2'
 
-const selectedFileName = ref('')
+const selectFileName = ref('')
 
 const uploadFile = ref('');
 const approvedFile = ref('');
@@ -78,7 +116,7 @@ function selectUpload(event){
     let file =  event.target.files[0];
 
     if(file){
-        selectedFileName.value  =  file.name
+        selectFileName.value  =  file.name
     }
 
 }
@@ -187,9 +225,11 @@ function saveInfoBd(textSelect, file){
         Swal.close();
     });
 
-
 }
 
+function downloadUrl(){
+    debugger
+}
 
 onBeforeMount(async() =>{
     const response = await fetch('/api/getPolicy/historyPolicy.php', {

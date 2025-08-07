@@ -14,14 +14,12 @@ if($func == 'createUserNew'){
 
     try{
 
-        
-
         $valueUser = $_POST['valueUser'];
         $valuePaternal = $_POST['valuePaternal'];
         $valueEmail = $_POST['valueEmail'];
         $valueNames = $_POST['valueNames'];
         $valueMaternal = $_POST['valueMaternal'];
-        $valueRol = $_POST['textRol'];
+        $roleValue = $_POST['roleValue'];
         $valuePassword = $_POST['valuePassword'];
 
         $hashedPassword = password_hash($valuePassword, PASSWORD_DEFAULT);
@@ -29,8 +27,8 @@ if($func == 'createUserNew'){
 
         $stmt_insert = $pdo->prepare("
                 INSERT INTO add_users 
-                (username, clave, name, paternal_last_name, maternal_last_name, email, date_create, createdByUserId, role)
-                VALUES (?,?,?,?,?,?,?,?,?)");
+                (username, clave, names, paternal_last_name, maternal_last_name, email, date_create, createdByUserId, role, update_date_user, edit_user)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 
         $success = $stmt_insert->execute([
                 $valueUser,
@@ -41,7 +39,9 @@ if($func == 'createUserNew'){
                 $valueEmail,
                 date('Y-m-d H:i:s'),
                 $_SESSION['user_id'],
-                $valueRol 
+                $roleValue,
+                '',
+                ''
             ]);
 
 

@@ -9,9 +9,10 @@
                     <!--Create user-->
                      <button type="button" class="btn btn-primary btn-sm " 
                              @click="openModalCreate()">
-                        <span class="text-uppercase fw-bolder text-white" style="font-size: 12px;">
+                        <span class="text-uppercase fw-bolder text-white me-2" style="font-size: 12px;">
                             crear usuario
                         </span>
+                        <i class="bi bi-plus-circle text-white"></i>
                     </button>
                 </div>
             </div>
@@ -28,8 +29,8 @@
                      
                     </thead>
                     <tbody>
-                        <tr class="table-active text-center ">
-                            <template  v-for="user in arrayUsers" :key="user.idUser">
+                        <template  v-for="(user, index) in arrayUsers[0]" :key="user.idUser">
+                            <tr class="table-active text-center ">
                                 <td >
                                     <span class="text-dark" v-text="user.idUser"></span>
                                 </td>
@@ -37,19 +38,19 @@
                                     <span class="text-dark" v-text="user.username"></span>
                                 </td>
                                 <td >
-                                    <span class="text-dark text-uppercase" v-text="user.name + ' ' + user.paternal_last_name + ' ' + user.maternal_last_name "></span>
+                                    <span class="text-dark text-uppercase" v-text="user.names + ' ' + user.paternal_last_name + ' ' + user.maternal_last_name "></span>
                                 </td>
                                 <td >
                                     <span class="text-dark" v-text="user.email"></span>
                                 </td>
                                 <td> 
-                                    <button class="btn btn-sm btn-warning" @click="editUser(user.idUser)">
-                                        <span class="text-uppercase fw-bold" style="font-size: 12px;">editar</span>
+                                    <button class="btn btn-sm btn-warning" @click="editUser(user.idUser, arrayUsers[0])">
+                                        <i class="bi bi-pen text-white me-2"></i>
+                                        <span class="text-uppercase fw-bold text-white" style="font-size: 12px;">editar</span>
                                     </button>
                                 </td>
-                            </template>
-                            
-                        </tr>
+                            </tr>
+                        </template>
                     </tbody>
                 </table>
             </div>
@@ -62,16 +63,20 @@
 
 <script setup>
 import { Modal } from 'bootstrap'
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount, ref, defineEmits } from 'vue';
+
 const arrayUsers = ref('[]')
-
-
+const emit = defineEmits(['eventUsers']);
 
 //Open modal SIN data-bs-target and JQuery
-const editUser =  (idUser) =>{
+const editUser =  (idUser, users) =>{
+
     const modalEdit = document.getElementById('editUserModal');
     const modalInstance = new Modal(modalEdit);
     modalInstance.show();
+
+    emit('eventUsers', {idUser,users});
+
 }
 
 const openModalCreate = () =>{
@@ -80,8 +85,6 @@ const openModalCreate = () =>{
 
     modalInstance.show();
 }
-
-
 
 onBeforeMount(async() =>{
     const response = await fetch('/api/getUsers/getInfoUser.php', {
@@ -92,9 +95,8 @@ onBeforeMount(async() =>{
         }
         return response.json();
     }).then(response =>{
-
         if(response.success){
-            arrayUsers.value = [response.history[0]];
+            arrayUsers.value = [response.history];
 
         }
     })
