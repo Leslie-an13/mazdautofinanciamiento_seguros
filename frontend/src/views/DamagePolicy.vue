@@ -7,7 +7,7 @@
         </span>
   </div>
 
-  <div  class="row imgFondo">
+  <div class="row imgFondo">
     <UploadDataBaseComponent  :getRouteFile="getFilePayment"/>
   </div>
 </template>

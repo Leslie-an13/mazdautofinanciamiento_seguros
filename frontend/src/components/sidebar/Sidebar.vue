@@ -22,6 +22,15 @@
         </RouterLink>
       </li>
       <li class="nav-item mb-1 ">
+        <RouterLink to="/claimsModule" class="nav-link">
+          <i class="bi bi-car-front me-2 text-white"></i>
+          <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">
+            Siniestros
+          </span>
+          
+        </RouterLink>
+      </li>
+      <li class="nav-item mb-1 ">
         
         <RouterLink to="/users" class="nav-link">
           <i class="bi bi-people text-white me-2"></i>

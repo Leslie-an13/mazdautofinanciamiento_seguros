@@ -1,5 +1,5 @@
 <template>
-    <div class="col-lg-11 mx-auto" style="margin-top: 60px;">
+    <div class="col-lg-11 mx-auto" style="margin-top: 45px;">
         <div class="card shadow rounded-10 " style="height: 600px;">
             <div class="card-header min-h-6px">
                 <div class="d-flex justify-content-end">

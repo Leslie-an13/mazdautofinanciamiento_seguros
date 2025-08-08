@@ -1,10 +1,14 @@
-<template>
+<template class="">
   <div>
     <h2>Dashboard</h2>
     <p>Bienvenido al panel de control.</p>
-    <CButton color="primary" @click="validateUser">Primary</CButton>
+
   </div>
 </template>
+
+<div class="row imgFondo">
+
+</div>
 
 <script>
 import { CButton } from '@coreui/vue'

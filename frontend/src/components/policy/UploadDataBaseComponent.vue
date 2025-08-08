@@ -1,7 +1,7 @@
 <template>
 
     <div class="col-lg-11 mx-auto">
-        <div class="card shawdow rounded-15" style="background-color: rgb(255,255,255); margin-top: 100px; border: 3px solid rgb(48, 48, 48); height: 465px;">
+        <div class="card shawdow rounded-15" style="background-color: rgb(255,255,255); margin-top: 60px;">
             <div class="card-body">
                 <div class="row">
                     <!--Upload file-->
@@ -217,6 +217,8 @@ function saveInfoBd(textSelect, file){
             Swal.fire({
               icon: "success",
               title: "Datos insertados correctamente",
+              confirmButtonText: "Aceptar",
+              confirmButtonColor: "#58A35D",
               showConfirmButton: true
             }).then(() => {
               location.reload(); 
