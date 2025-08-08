@@ -4,17 +4,29 @@
 
       <div class="container-fluid d-flex justify-content-between align-items-center">
           <span class="navbar-brand mb-0 h1">Mi Dashboard</span>
-
-          <div class="d-flex align-items-center gap-2">
-            <i class="bi bi-person-circle text-white"></i>
-            <p v-if="currentUser" class="mb-0 text-white text-uppercase" style="font-size: 12px;">
-              {{ currentUser }}
-            </p>
-            <button class="btn btn-outline-light btn-sm" style="font-size: 12px;" @click="handleLogout">Cerrar sesión</button>
+          
+          <div class="btn-group">
+            <button class="btn btn-secondary btn-sm" type="button">
+              <i class="bi bi-person-circle text-white me-2"></i>
+                <span v-if="currentUser" class="mb-0 text-white text-uppercase" style="font-size: 12px;">
+                  {{ currentUser }}
+                </span>
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu w-100">
+              <li>
+                  <a class="dropdown-item me-2" @click="handleLogout" 
+                    style="font-size: 15px; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+                    <i class="bi bi-power "></i> Cerrar sesion </a>
+                </li>
+            </ul>
           </div>
-        
       </div>
     </header>
+
+
 
     <div class="container-fluid">
       <div class="row flex-nowrap">

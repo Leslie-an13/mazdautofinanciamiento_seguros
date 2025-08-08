@@ -39,7 +39,7 @@ export default {
         method: 'GET',
     })
     .then(response => {
-        console.log("Respuesta cruda:", response);
+
         if (!response.ok) {
             throw new Error('Respuesta no OK del servidor: ' + response.status);
         }

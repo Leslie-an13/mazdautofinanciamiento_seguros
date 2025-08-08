@@ -5,6 +5,8 @@ import Dashboard from '../views/Dashboard.vue'
 import MainLayout from '../views/MainLayout.vue'
 import DamagePolicy from '../views/DamagePolicy.vue';
 import PolicyDocument from '../views/PolicyDocument.vue';
+import ClaimsModule from '../views/ClaimsModule.vue';
+import AccessDenied from '../views/AccessDenied.vue';
 import Users from '../views/Users.vue';
 import { currentUser } from '../auth';
 
@@ -42,6 +44,17 @@ const routes = [
       component: PolicyDocument
     }]
   },
+  { path: '/claimsModule', component: ClaimsModule,
+    component: MainLayout,
+    meta: {
+      requiresAuth: true,
+      role: ['admin', 'Gestor de siniestros']
+    },
+    children: [{
+      path: '',
+      component: ClaimsModule
+    }]
+  },
   { path: '/users', component: Users,
     component: MainLayout,
     meta: {
@@ -52,9 +65,13 @@ const routes = [
       path: '',
       component: Users
     }]
-
-
+  }, 
+  {
+   path: '/denegado',
+   name: 'AccessDenied',
+   component: AccessDenied
   }
+
 ]
 
 const router = createRouter({
@@ -67,8 +84,8 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !currentUser.value) {
     next('/login')
   } else if ( to.meta.role && Array.isArray(to.meta.role) && !to.meta.role.includes(currentUser.value?.role)) {
-    alert('No tienes permiso para entrar aquí')
-    next(false) // bloquea el acceso
+   // alert('No tienes permiso para entrar aquí')
+    next('/denegado') // bloquea el acceso
   } else {
     next() // deja pasar
   }

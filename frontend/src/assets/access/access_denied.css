@@ -1,0 +1,35 @@
+.denied {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffe5e5;
+    text-align: center;
+}
+
+.denied img {
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.btnClass {
+  background: #D15454 !important;
+  font-family: inherit;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 18px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
+}
+
+.btnClass:hover{
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em;
+}
+
+.btnClass:active{
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em;
+}

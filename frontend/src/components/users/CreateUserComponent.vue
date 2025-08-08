@@ -329,6 +329,8 @@ function saveUserCreate(){
             Swal.fire({
               icon: "success",
               title: "Datos insertados correctamente",
+              confirmButtonText: "Aceptar",
+              confirmButtonColor: "#58A35D",
               showConfirmButton: true
             }).then(() => {
               window.location.reload(); 

@@ -266,6 +266,8 @@ function editUser(userID){
             Swal.fire({
               icon: "success",
               title: "Datos actualizados correctamente",
+              confirmButtonText: "Aceptar",
+              confirmButtonColor: "#58A35D",
               showConfirmButton: true
             }).then(() => {
               location.reload(); 
