@@ -1,134 +1,60 @@
-
-.download-btn {
-  height: 150px;
-  width: 70px;
+/* From Uiverse.io by andrew-demchenk0 */ 
+.buttonDown {
+  position: relative;
+  width: 150px;
+  height: 40px;
   cursor: pointer;
-  background: white;
-  border: none;
-  background: #ff0021;
-  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #791717;
+  background-color: #992020;
   overflow: hidden;
-  display: flex;
-  flex-direction: column; /* apila SVG y texto */
-  align-items: center;
-  justify-content: center;
+  border-radius: 7px;
 }
 
-.button-content {
-  transform: translateY(-45px);
-  transition: all 250ms ease-in-out;
+.buttonDown, .button__icon, .button__text {
+  transition: all 0.3s;
 }
 
-.svg-container,
-.text-container {
-  height: 70px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.text-container .text {
-  font-size: 13px;
-  color: rgb(255,255,255);
+.buttonDown .button__text {
+  transform: translateX(22px);
+  color: #fff;
   font-weight: 600;
-  opacity: 1;
-  transition: opacity ease-in-out 250ms;
 }
 
-.download-icon {
-  height: 25px;
-  width: 25px;
+.buttonDown .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #791717;;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonDown .svg {
+  width: 20px;
   fill: #fff;
-  opacity: 0;
-  transition: opacity ease-in-out 250ms;
 }
 
-/* hover state for the button */
-.download-btn:hover .button-content {
-  transform: translateY(0px);
+.buttonDown:hover {
+  background: #791717;;
 }
 
-.download-btn:hover .text {
-  opacity: 0;
+.buttonDown:hover .button__text {
+  color: transparent;
 }
 
-.download-btn:hover .download-icon {
-  opacity: 1;
+.buttonDown:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
 }
 
-.download-btn:focus .download-icon {
-  -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
-  animation: heartbeat 1.5s ease-in-out infinite both;
+.buttonDown:active .button__icon {
+  background-color: #791717;;
 }
 
-@-webkit-keyframes heartbeat {
-  from {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: center center;
-    transform-origin: center center;
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  10% {
-    -webkit-transform: scale(0.91);
-    transform: scale(0.91);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  17% {
-    -webkit-transform: scale(0.98);
-    transform: scale(0.98);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  33% {
-    -webkit-transform: scale(0.87);
-    transform: scale(0.87);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  45% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
+.buttonDown:active {
+  border: 1px solid #791717;;
 }
-@keyframes heartbeat {
-  from {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: center center;
-    transform-origin: center center;
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  10% {
-    -webkit-transform: scale(0.91);
-    transform: scale(0.91);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  17% {
-    -webkit-transform: scale(0.98);
-    transform: scale(0.98);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  33% {
-    -webkit-transform: scale(0.87);
-    transform: scale(0.87);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  45% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-}
-
-/* hover state for the button */

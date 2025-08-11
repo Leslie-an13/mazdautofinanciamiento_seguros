@@ -6,6 +6,8 @@ header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
 
 require_once '../../config/database.php';
+$conexion = new conexionPDO();
+$pdo = $conexion->getConexion();
 
 
 $func = $_POST['func'];

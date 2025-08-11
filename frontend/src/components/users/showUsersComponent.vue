@@ -63,7 +63,7 @@
 
 <script setup>
 import { Modal } from 'bootstrap'
-import { onBeforeMount, ref, defineEmits } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 const arrayUsers = ref('[]')
 const emit = defineEmits(['eventUsers']);

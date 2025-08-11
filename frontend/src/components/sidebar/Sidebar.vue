@@ -31,11 +31,18 @@
         </RouterLink>
       </li>
       <li class="nav-item mb-1 ">
-        
+        <RouterLink to="/claimsPayment" class="nav-link">
+          <i class="bi bi-bank text-white me-2"></i>
+          <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">
+           Pagos de siniestros
+          </span>
+          
+        </RouterLink>
+      </li>
+      <li class="nav-item mb-1 ">
         <RouterLink to="/users" class="nav-link">
           <i class="bi bi-people text-white me-2"></i>
           <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">Usuarios</span>
-          
         </RouterLink>
       </li>
     </ul>
