@@ -8,7 +8,7 @@
     </div>
 
     <div class="row imgFondo">
-      <ClaimsDataUploadComponent></ClaimsDataUploadComponent>
+      <ClaimsDataUploadComponent ></ClaimsDataUploadComponent>
     </div>
 
 </template>
@@ -24,17 +24,21 @@ export default {
   },
   data() {
     return {
-      
+      getFilePayment: {
+        exist: false,
+        route_1: '',
+        route_2: '',
+        route_3: ''
+      }
     }
   },
   methods: {
-
+    
   },
   mounted(){
-  
+   
 
-
-    }
+  }
 }
 </script>
 

@@ -60,7 +60,7 @@ const routes = [
     component: MainLayout,
     meta: {
       requiresAuth: true,
-      role: ['admin']
+      role: ['admin', 'Auxiliar contable']
     },
     children: [{
       path: '',

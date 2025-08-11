@@ -63,8 +63,8 @@ if($func == 'insertClaimsFiles'){
 
                 $nombreCompleto = $result['names'] . ' ' . $result['paternal_last_name'] . ' ' . $result['maternal_last_name'];
 
-                $texto = 'El usuario ' . $nombreCompleto . ' ha cargado el archivo de pago de la aseguradora 1 ' . date('Y-m-d H:i:s') . "\n" 
-                . ' ha cargado el archivo de pago de la aseguradora 2 ' . date('Y-m-d H:i:s') . "\n" .
+                $texto = 'El usuario ' . $nombreCompleto . ' ha cargado el archivo de pago de la aseguradora 1 ' . date('Y-m-d H:i:s') . ",\n" 
+                . ' ha cargado el archivo de pago de la aseguradora 2, ' . date('Y-m-d H:i:s') . ",\n" .
                 ' ha cargado el archivo de pago de la aseguradora 3 ' . date('Y-m-d H:i:s');
 
 

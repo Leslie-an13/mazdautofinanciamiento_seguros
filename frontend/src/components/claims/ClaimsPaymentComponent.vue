@@ -13,7 +13,7 @@
 
                         <div class="row">
                             <!--Archivo 1-->
-                            <div class="col-lg-4">
+                            <div class="col-lg-5 mx-auto">
                                 
                                 <div class="d-flex justify-content-center">
                                     <div class="containerFile mx-auto" style="margin-top: 10px;">
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <!--Archivo 2-->
-                            <div class="col-lg-4">
+                            <div class="col-lg-5 mx-auto">
                              
                                 <div class="d-flex justify-content-center">
                                     <div class="containerFile mx-auto" style="margin-top: 10px;">
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <!--Archivo 3-->
-                            <div class="col-lg-4">
+                            <div class="col-lg-5 mx-auto mt-3">
                                
                                 <div class="d-flex justify-content-center">
                                     <div class="containerFile mx-auto" style="margin-top: 10px;">
@@ -82,8 +82,19 @@
                                 </div>
                             </div>
                             
-                            <div class="d-flex justify-content-end">
-                                 <select class="form-select form-select-sm w-50 mt-5" 
+
+
+                            <!--Select && Files-->
+                            <div class="d-flex justify-content-between">
+                                <!--Button download-->
+                                <a class="buttonDown"  style="color: inherit; text-decoration: none;">
+                                    <span class="button__text text-white">Download</span>
+                                    <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" class="svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path></svg></span>
+                                </a>
+
+
+                                <!--Select-->
+                                <select class="form-select form-select-sm w-50 mt-5" 
                                         id="selectStatus"
                                         aria-label="Small select example">
                                     <option selected>Selecciona una opcion...</option>
@@ -92,7 +103,7 @@
                                 </select>
                             </div>
                            
-
+                            <!--Button save-->
                             <div class="d-flex justify-content-end mt-5">
                                 <button type="button" class="btn btn-sm btn-success" @click="validateFiles()">
                                     <span class="text-uppercase text-white" style="font-size: 12px;">
@@ -111,10 +122,13 @@
                                 historial
                             </span>
                         </div>
-                        <i class="bi bi-circle text-danger me-1" style="font-size: 13px;"></i>
-                        <span class="text-uppercase" style="font-size: 13px;">
-                            el usuario ha cargado los archivos 
-                        </span>
+
+                        <i class="bi bi-circle me-2" style="color: red;"></i>
+                        <span class="text-dark" v-text="uploadFile"></span>
+                        <br>
+                        <i class="bi bi-circle me-2" style="color:red;"></i>
+                        <span class="text-dark" v-text="approvedFile"></span>
+                    
                     </div>
 
                 </div>
@@ -131,6 +145,8 @@ import Swal from 'sweetalert2'
 const selectedFileName1 = ref('');
 const selectedFileName2 = ref('');
 const selectedFileName3 = ref('');
+const uploadFile = ref('');
+const approvedFile = ref('');
 
 function insurer1(event){
     let file =  event.target.files[0];
@@ -305,5 +321,31 @@ function saveFilesClaims(){
     });
 
 }
+
+onBeforeMount(async() =>{
+
+    const response = await fetch('/api/claimsPayments/recordOfInsurancePayments.php', {
+        method: 'GET'
+    }).then(response =>{
+        if (!response.ok) {
+            throw new Error('Respuesta no OK del servidor: ' + response.status);
+        }
+        return response.json();
+    }).then(response =>{
+      
+        if(response.success){
+            uploadFile.value = response.history[0].file_upload_date;
+            approvedFile.value = response.history[0].user_file_date;
+        
+        }
+    })
+
+})
+
+/*const downloadFile = computed(() => {
+  if (!props.getRouteFile || !props.getRouteFile.route) return '';
+  const fileName = props.getRouteFile.route.split('/').pop(); 
+  return `http://localhost/mazdautofinanciamiento_seguros/backend/api/getRouteFiles/dowloand_file_payment.php?file=${fileName}`;
+});*/
 
 </script>
