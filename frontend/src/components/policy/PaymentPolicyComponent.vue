@@ -74,11 +74,17 @@
                                 historial
                             </span>
                         </div>
-                        <i class="bi bi-circle me-2" style="color: red;"></i>
-                        <span class="text-dark" v-text="uploadFile"></span>
+                        <template v-if="uploadFile">
+                            <i class="bi bi-circle me-2" style="color: red;"></i>
+                            <span class="text-dark" v-text="uploadFile"></span>
+                        </template>
+                       
                         <br>
-                        <i class="bi bi-circle me-2" style="color:red;"></i>
-                        <span class="text-dark" v-text="approvedFile"></span>
+                        <template v-if="approvedFile">
+                            <i class="bi bi-circle me-2" style="color:red;"></i>
+                            <span class="text-dark" v-text="approvedFile"></span>
+                        </template>
+                        
                     </div>
                 </div>
             </div>
