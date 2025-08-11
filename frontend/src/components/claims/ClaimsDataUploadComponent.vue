@@ -21,7 +21,7 @@
                             </div>
                                 <label class="custom-file-upload">
                                     <input class="title" type="file" @change="selectFileClaims" 
-                                        accept=".pdf"
+                                        accept=".xlsx, .xls, .csv"
                                         id="claimsFile"/>
                                     Selecciona archivo...
                                     <p v-if="selectedFileName" v-text="selectedFileName" class="text-white fw-bolder" style="font-size: 8px;"></p>
