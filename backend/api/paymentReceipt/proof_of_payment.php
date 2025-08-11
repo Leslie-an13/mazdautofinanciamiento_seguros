@@ -6,6 +6,8 @@ header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
 
 require_once '../../config/database.php';
+$conexion = new conexionPDO();
+$pdo = $conexion->getConexion();
 
 $dateActually = date('Y-m-d');
 $monthActually = date('m', strtotime($dateActually));

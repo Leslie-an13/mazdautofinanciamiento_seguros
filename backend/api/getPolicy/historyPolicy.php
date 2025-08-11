@@ -8,6 +8,8 @@ header('Content-Type: application/json');
 
 
 require_once '../../config/database.php';
+$conexion = new conexionPDO();
+$pdo = $conexion->getConexion();
 
 $stmt = $pdo->prepare("SELECT * FROM damage_policy_history");
         $stmt->execute();

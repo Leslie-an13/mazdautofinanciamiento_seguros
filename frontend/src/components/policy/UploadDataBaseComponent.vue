@@ -64,27 +64,12 @@
                             <span class="text-uppercase fw-boldest" style="font-size: 14px;">Descargar comprobante</span>
                         </div>
                         
-                         <div class="d-flex justify-content-center mt-3">
-                            <a class="download-btn pixel-corners" :href="downloadFile">
-                                <div class="button-content">
-                                    <div class="svg-container">
-                                    <svg
-                                        class="download-icon"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                        d="M19.479 10.092c-.212-3.951-3.473-7.092-7.479-7.092-4.005 0-7.267 3.141-7.479 7.092-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.521-5.408zm-7.479 6.908l-4-4h3v-4h2v4h3l-4 4z"
-                                        ></path>
-                                    </svg>
-                                    </div>
-                                    <div class="text-container">
-                                        <div class="text">Descargar pdf</div>
-                                    </div>
-                                </div>
+                         <div class="d-flex justify-content-center mt-3" >
+                             <a class="buttonDown" :href="downloadFile" style="color: inherit; text-decoration: none;">
+                                <span class="button__text text-white">Download</span>
+                                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" class="svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path></svg></span>
                             </a>
+                          
                         </div>
 
                         

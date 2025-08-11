@@ -1,26 +1,27 @@
 <template>
-    <!--title-->
+     <!--title-->
     <div style="background-color: rgb(222, 222, 222); height: 25px;">
             <i class="bi bi-caret-right"></i>
             <span class="text-uppercase fw-boldest" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',            'Lucida Sans', Arial, sans-serif; font-size: 11px;">
-                siniestros de vida y udi
+                Pagos de siniestros y udi
             </span>
     </div>
 
     <div class="row imgFondo">
-      <ClaimsDataUploadComponent></ClaimsDataUploadComponent>
+        <ClaimsPaymentComponent></ClaimsPaymentComponent>
     </div>
 
 </template>
 
-<script>
 
+<script>
 import Swal from 'sweetalert2';
-import ClaimsDataUploadComponent from '../components/claims/ClaimsDataUploadComponent.vue';
+import ClaimsPaymentComponent from '../components/claims/ClaimsPaymentComponent.vue';
+
 
 export default {
   components: {
-    ClaimsDataUploadComponent
+    ClaimsPaymentComponent
   },
   data() {
     return {
@@ -36,5 +37,5 @@ export default {
 
     }
 }
-</script>
 
+</script>

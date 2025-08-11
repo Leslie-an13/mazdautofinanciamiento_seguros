@@ -7,6 +7,8 @@ header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
 
 require_once '../../config/database.php';
+$conexion = new conexionPDO();
+$pdo = $conexion->getConexion();
 
 $data = json_decode(file_get_contents("php://input"), true);
 
@@ -29,7 +31,7 @@ if (isset($_FILES['files']) && isset($_POST['textPolicy'])) {
 
     if (move_uploaded_file($archivo['tmp_name'], $targetFile)) {
 
-        $stmt = $pdo->prepare("SELECT idUser, name, paternal_last_name, maternal_last_name FROM add_users WHERE idUser = :idUser");
+        $stmt = $pdo->prepare("SELECT idUser, names, paternal_last_name, maternal_last_name FROM add_users WHERE idUser = :idUser");
         $stmt->execute([
             ':idUser' => $_SESSION['user_id'],
         ]);
@@ -43,7 +45,7 @@ if (isset($_FILES['files']) && isset($_POST['textPolicy'])) {
                 VALUES (?, ?, ?, ?, ?, ?)
             ");
 
-            $nombreCompleto = $result['name'] . ' ' . $result['paternal_last_name'] . ' ' . $result['maternal_last_name'];
+            $nombreCompleto = $result['names'] . ' ' . $result['paternal_last_name'] . ' ' . $result['maternal_last_name'];
 
             $stmt_insert->execute([
                 $result['idUser'],
