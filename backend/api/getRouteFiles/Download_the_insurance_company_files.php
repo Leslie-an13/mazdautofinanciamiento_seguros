@@ -1,9 +1,12 @@
 <?php
 if (isset($_GET['file'])) {
 
+    #Se descarga base de AON para poder generar el pago de las aseguradoras
+
     $file = basename($_GET['file']);
     $monthYear = date('m_Y');
-    $path = __DIR__ . "/../uploads/payment_claims/$monthYear/" . $file;
+    $path = __DIR__ . "/../uploads/base_claims/$monthYear/" . $file;
+
 
     if (file_exists($path)) {
         header('Content-Description: File Transfer');

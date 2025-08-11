@@ -1,6 +1,7 @@
 <?php
 if (isset($_GET['file'])) {
 
+    #Se descarga base de AON para poliza de daños
     $file = basename($_GET['file']);
     $monthYear = date('m_Y');
     $path = __DIR__ . "/../uploads/base_aon/$monthYear/" . $file;

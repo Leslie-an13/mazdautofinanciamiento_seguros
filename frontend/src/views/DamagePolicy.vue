@@ -30,37 +30,39 @@ export default {
   },
   methods: {
 
-  },
-  mounted(){
+    getRoute(){
+
       fetch('/api/getPolicy/download_policy_payment_receipt.php', {
-        method: 'GET',
-    })
-    .then(response => {
-        console.log("Respuesta cruda:", response);
-        if (!response.ok) {
-            throw new Error('Respuesta no OK del servidor: ' + response.status);
-        }
-        return response.json();
-    })
-    .then(data => {
+          method: 'GET',
+      }).then(response => {
+          //console.log("Respuesta cruda:", response);
+          if (!response.ok) {
+              throw new Error('Respuesta no OK del servidor: ' + response.status);
+          }
+          return response.json();
+      }).then(data => {
 
-        if(data.success){
-            
-          this.getFilePayment.exist = true;
-          this.getFilePayment.route = data.file
-            
-        } else {
-          this.getFilePayment.exist = false;
-          this.getFilePayment.route = '';
-        }
-    })
-    .catch(error => {
-        console.error('Error atrapado en catch:', error);
-        Swal.close();
-    });
-      
-
+          if(data.success){
+              
+            this.getFilePayment.exist = true;
+            this.getFilePayment.route = data.file
+              
+          } else {
+            this.getFilePayment.exist = false;
+            this.getFilePayment.route = '';
+          }
+      }).catch(error => {
+          //console.error('Error atrapado en catch:', error);
+          Swal.close();
+      });
 
     }
+
+  },
+  mounted(){
+
+    this.getRoute();
+      
+  }
 }
 </script>

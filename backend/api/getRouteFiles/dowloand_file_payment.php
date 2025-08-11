@@ -1,6 +1,7 @@
 <?php
 if (isset($_GET['file'])) {
 
+    ##Se descarga archivo del pago de poliza por parte de tesoreria
     $file = basename($_GET['file']);
     $monthYear = date('m_Y');
     $path = __DIR__ . "/../uploads/payment_policy/$monthYear/" . $file;
