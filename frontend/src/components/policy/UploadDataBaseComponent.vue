@@ -198,8 +198,7 @@ function saveInfoBd(textSelect, file){
     })
     .then(data => {
         if(data.success){
-            debugger
-            
+         
             Swal.fire({
               icon: "success",
               title: "Datos insertados correctamente",
@@ -226,6 +225,7 @@ const downloadFile = computed(() => {
 });
 
 onBeforeMount(async() =>{
+    debugger
     const response = await fetch('/api/getPolicy/historyPolicy.php', {
         method: 'GET'
     }).then(response =>{

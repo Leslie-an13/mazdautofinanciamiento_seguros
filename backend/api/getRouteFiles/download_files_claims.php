@@ -2,7 +2,7 @@
 if (isset($_GET['file'])) {
 
     ##Se descarga los archivos de las aseguradoras uno por uno, se envia el nombre del archivo dependependiendo
-    #El boton que se seleccione
+    #El boton que se elija
 
     $file = basename($_GET['file']);
     

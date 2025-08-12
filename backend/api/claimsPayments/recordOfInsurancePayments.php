@@ -9,27 +9,33 @@ require_once '../../config/database.php';
 $conexion = new conexionPDO();
 $pdo = $conexion->getConexion();
 
-$stmt = $pdo->prepare("SELECT * FROM insurance_company_payment");
-        $stmt->execute();
+$year = date('Y');
+$month = date('m');
+$status = "Aprobar";
 
-$arrayPayment = [];
+    $stmt = $pdo->prepare("SELECT * FROM insurance_company_payment WHERE YEAR(date_created_route) = ?
+            AND MONTH(date_created_route) = ?  AND  status_upload_file = ? ");
+            
+    $stmt->execute([$year, $month, $status]);
 
-while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $arrayPayment[] = $result;
-}
+    $arrayPayment = [];
 
-if($arrayPayment){
+    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $arrayPayment[] = $result;
+    }
 
-    echo json_encode([
-        'success' => true,
-        'message' => 'Se proceso la informacion',
-        'history' => $arrayPayment
-    ]);
-} else{
-     echo json_encode([
-        'success' => false,
-        'message' => 'Error no se pudo procesar la informacion',
-    ]);
-}
+    if($arrayPayment){
+
+        echo json_encode([
+            'success' => true,
+            'message' => 'Se proceso la informacion',
+            'history' => $arrayPayment
+        ]);
+    } else{
+        echo json_encode([
+            'success' => false,
+            'message' => 'Error no se pudo procesar la informacion',
+        ]);
+    }
 
 ?>
