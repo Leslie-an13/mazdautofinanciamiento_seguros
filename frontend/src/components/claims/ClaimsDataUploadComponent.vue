@@ -4,8 +4,42 @@
             <div class="card-body">
                 <div class="row">
 
+                    <div class="col-lg-2 mx-auto col-sm-12 mx-auto" v-if="getFilesPayments.exist">
+                        <div class="text-center mb-3" style="font-size: 13px;">
+                            <span class="text-uppercase" style="font-family:'Times New Roman', Times, serif; font-size: 16px;">
+                                Descargar archivos
+                            </span>
+                        </div>
+
+
+                        <!--Boton aseguradora-->
+                        <div class="d-flex justify-content-center">
+                            <button class="buttonDown" @click="downloadFile(getFilesPayments.route_1)" style="color: inherit; text-decoration: none;">
+                                <span class="button__text text-white">Download</span>
+                                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" class="svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path></svg></span>
+                            </button>
+                        </div>
+
+                        <!--Boton aseguradora 2-->
+                        <div class="d-flex justify-content-center mt-5">
+                            <button class="buttonDown"  @click="downloadFile(getFilesPayments.route_2)"  style="color: inherit; text-decoration: none;">
+                                    <span class="button__text text-white">Download</span>
+                                    <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" class="svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path></svg></span>
+                            </button>
+                        </div>
+
+                        <!--Boton aseguradora 3-->
+                        <div class="d-flex justify-content-center mt-5">
+                            <button class="buttonDown" @click="downloadFile(getFilesPayments.route_3)" style="color: inherit; text-decoration: none;">
+                                    <span class="button__text text-white">Download</span>
+                                    <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" class="svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path></svg></span>
+                            </button>
+                        </div>
+
+                    </div>
+
                     <!--Upload file-->
-                    <div class="col-lg-6 border-2 border-secondary border-end">
+                    <div class="col-lg-5 mx-auto col-sm-12 border-2 border-light-subtle border-end">
                          <div class="text-center mb-3">
                             <span class="text-uppercase" style="font-family:'Times New Roman', Times, serif; font-size: 16px;">
                                 Subir archivo
@@ -55,7 +89,7 @@
                     </div>
 
                     <!--Historial-->
-                    <div class="col-lg-6">
+                    <div class="col-lg-5 mx-auto col-sm-12">
                         <div class="text-center mb-2">
                             <span class="text-uppercase" style="font-family:'Times New Roman', Times, serif; font-size: 16px;">
                                 historial
@@ -75,11 +109,16 @@
 
 </template>
 
-
-
 <script setup>
-import { computed, ref, onBeforeMount } from 'vue';
+import { ref, onBeforeMount } from 'vue';
 import Swal from 'sweetalert2'
+
+const props = defineProps({
+  getFilesPayments: {
+    type: Object,
+    required: true
+  }
+});
 
 const selectedFileName = ref('')
 const uploadFile = ref('');
@@ -208,6 +247,19 @@ function saveInformationTheClaims(){
 
 }
 
+//Get files
+function downloadFile(filePath) {
+
+    if (!filePath) return;
+    const fileName = filePath.split('/').pop();  //Obtenemos solo el nombre del archivo ¿
+    const link = document.createElement('a'); //Creamos un enlace invisible 
+    link.href = `http://localhost/mazdautofinanciamiento_seguros/backend/api/getRouteFiles/download_files_claims.php?file=${encodeURIComponent(fileName)}`;
+    link.download = fileName;
+    document.body.appendChild(link); //Se crea esti para que no recargue la pagina, solo descargue archivo
+    link.click();
+    document.body.removeChild(link);
+}
+
 //Get history
 onBeforeMount(async() =>{
 
@@ -229,5 +281,6 @@ onBeforeMount(async() =>{
 
 
 })
+
 
 </script>

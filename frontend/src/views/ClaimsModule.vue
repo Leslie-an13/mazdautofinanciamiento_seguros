@@ -8,7 +8,7 @@
     </div>
 
     <div class="row imgFondo">
-      <ClaimsDataUploadComponent ></ClaimsDataUploadComponent>
+      <ClaimsDataUploadComponent :getFilesPayments="getFilesPayments"></ClaimsDataUploadComponent>
     </div>
 
 </template>
@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      getFilePayment: {
+      getFilesPayments: {
         exist: false,
         route_1: '',
         route_2: '',
@@ -35,7 +35,6 @@ export default {
   methods: {
     getRoutes(){
 
-      //Me falta info
       fetch('/api/claimsPayments/recordOfInsurancePayments.php', {
           method: 'GET',
       }).then(response => {
@@ -46,11 +45,15 @@ export default {
           return response.json();
       }).then(data => {
           if(data.success){
-            this.getFilePayment.exist = true;
-            this.getFilePayment.route = data.history[0].base_file_path_claims  
+            this.getFilesPayments.exist = true;
+            this.getFilesPayments.route_1 = data.history[0].base1_file_path  
+            this.getFilesPayments.route_2 = data.history[0].base2_file_path  
+            this.getFilesPayments.route_3 = data.history[0].base3_file_path  
           } else {
-            this.getFilePayment.exist = false;
-            this.getFilePayment.route = '';
+            this.getFilesPayments.exist = false;
+            this.getFilesPayments.route_1 = '';
+            this.getFilesPayments.route_2 = '';
+            this.getFilesPayments.route_3 = '';
           }
       }).catch(error => {
           //console.error('Error atrapado en catch:', error);
