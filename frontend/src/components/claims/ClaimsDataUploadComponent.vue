@@ -29,7 +29,7 @@
                             
                         </div>
 
-
+                        <!--Select Status-->
                         <div class="text-center mt-5">
                             <span class="text-uppercase">aprobar archivo</span>
                         </div>
@@ -85,7 +85,7 @@ const selectedFileName = ref('')
 const uploadFile = ref('');
 const approvedFile = ref('');
 
-
+//Function for detected text in input
 function selectFileClaims(event){
     let file =  event.target.files[0];
 
@@ -95,6 +95,7 @@ function selectFileClaims(event){
 
 }
 
+//Validate inputs
 function validateFiles(){
 
     let file = document.getElementById('claimsFile').files[0];
@@ -135,7 +136,7 @@ function validateFiles(){
     }
 
 }
-
+//Question 
 function questionSaveClaims(){
     Swal.fire({
         title: '&iquest;Est&aacute;s seguro?',
@@ -154,7 +155,7 @@ function questionSaveClaims(){
             }
     });
 }
-
+//Save information
 function saveInformationTheClaims(){
     let file = document.getElementById('claimsFile').files[0];
     let status = document.getElementById('selectStatus');
@@ -207,6 +208,7 @@ function saveInformationTheClaims(){
 
 }
 
+//Get history
 onBeforeMount(async() =>{
 
     const response = await fetch('/api/databaseClaims/getClaimsData.php', {

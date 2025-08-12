@@ -16,7 +16,7 @@
                             <div class="col-lg-5 mx-auto">
                                 
                                 <div class="d-flex justify-content-center">
-                                    <div class="containerFile mx-auto" style="margin-top: 10px;">
+                                    <div class="containerFile mx-auto d-block" style="margin-top: 10px;">
                                         <div class="folder">
                                         <div class="front-side">
                                         <div class="tip"></div>
@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="back-side cover"></div>
                                     </div>
-                                        <label class="custom-file-upload">
+                                        <label class="custom-file-upload" style="margin-top: 90px;">
                                             <input class="title" type="file" @change="insurer1" 
                                                 accept=".pdf"
                                                 id="insurer_id1"/>
@@ -34,12 +34,17 @@
                                     
                                     </div>
                                 </div>
+                                <div class="text-center">
+                                    <span class="text-uppercase fw-bolder" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                                font-size: 12px;">Aseguradora 1</span>
+                                </div>
+                                
                             </div>
                             <!--Archivo 2-->
                             <div class="col-lg-5 mx-auto">
                              
                                 <div class="d-flex justify-content-center">
-                                    <div class="containerFile mx-auto" style="margin-top: 10px;">
+                                    <div class="containerFilesecond mx-auto" style="margin-top: 10px;">
                                         <div class="folder">
                                         <div class="front-side">
                                         <div class="tip"></div>
@@ -57,12 +62,17 @@
                                     
                                     </div>
                                 </div>
+                                <!--Texto-->
+                                <div class="text-center">
+                                    <span class="text-uppercase fw-bolder" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                                font-size: 12px;">Aseguradora 2</span>
+                                </div>
                             </div>
                             <!--Archivo 3-->
                             <div class="col-lg-5 mx-auto mt-3">
                                
                                 <div class="d-flex justify-content-center">
-                                    <div class="containerFile mx-auto" style="margin-top: 10px;">
+                                    <div class="containerFileThree mx-auto" style="margin-top: 10px;">
                                         <div class="folder">
                                         <div class="front-side">
                                         <div class="tip"></div>
@@ -80,15 +90,18 @@
                                     
                                     </div>
                                 </div>
+                                <!--Texto-->
+                                <div class="text-center">
+                                    <span class="text-uppercase fw-bolder" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+                                            font-size: 12px;">Aseguradora 3</span>
+                                </div>
                             </div>
-                            
-
 
                             <!--Select && Files-->
-                            <div class="d-flex justify-content-between" v-if="getFilePayment.exist">
+                            <div class="d-flex justify-content-between">
                                 <!--Button download-->
-                                <div class="mt-5">
-                                    <span class="text-uppercase fw-bolder" style="font-size: 12px; font-family:'Times New Roman', Times, serif; ">
+                                <div style="margin-top: 50px;" v-if="getFilePayment.exist">
+                                    <span class="text-uppercase fw-bold" style="font-size: 12px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
                                         descargar factura aon
                                     </span>
                                     <a class="buttonDown "  :href="downloadFile" style="color: inherit; text-decoration: none;">
@@ -97,7 +110,6 @@
                                     </a>
                                 </div>
                                 
-
                                 <!--Select-->
                                 <select class="form-select form-select-sm w-50 " style="height: 35px; margin-top: 75px;" 
                                         id="selectStatus"
@@ -122,6 +134,7 @@
                         </div>
                     </div>
 
+                    <!--Historial-->
                     <div class="col-lg-4">
                         <div class="text-center mb-2">
                             <span class="text-uppercase" style="font-family:'Times New Roman', Times, serif; font-size: 16px;">
