@@ -48,7 +48,6 @@ export default {
       let userFound = values.users.find(u => u.idUser === values.idUser);
 
       if(userFound){
-       
         this.userToEdit = {
             names: userFound.names,
             paternal: userFound.paternal_last_name,
@@ -58,12 +57,10 @@ export default {
             role: userFound.role,
             userId: userFound.idUser
         }
-
       }
           
     }
 
-    
   }
 
 }

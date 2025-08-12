@@ -190,7 +190,7 @@ function saveInfoBd(textSelect, file){
         body: formData
     })
     .then(response => {
-        console.log("Respuesta cruda:", response);
+        //console.log("Respuesta cruda:", response);
         if (!response.ok) {
             throw new Error('Respuesta no OK del servidor: ' + response.status);
         }
@@ -212,7 +212,7 @@ function saveInfoBd(textSelect, file){
         }
     })
     .catch(error => {
-        console.error('Error atrapado en catch:', error);
+       // console.error('Error atrapado en catch:', error);
         Swal.close();
     });
 
@@ -225,7 +225,7 @@ const downloadFile = computed(() => {
 });
 
 onBeforeMount(async() =>{
-    debugger
+
     const response = await fetch('/api/getPolicy/historyPolicy.php', {
         method: 'GET'
     }).then(response =>{

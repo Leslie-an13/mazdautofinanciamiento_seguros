@@ -254,7 +254,7 @@ function editUser(userID){
         body: formData
     })
     .then(response => {
-        console.log("Respuesta cruda:", response);
+        //console.log("Respuesta cruda:", response);
         if (!response.ok) {
             throw new Error('Respuesta no OK del servidor: ' + response.status);
         }
@@ -276,7 +276,7 @@ function editUser(userID){
         }
     })
     .catch(error => {
-        console.error('Error atrapado en catch:', error);
+        //console.error('Error atrapado en catch:', error);
         Swal.close();
     });
 

@@ -43,7 +43,6 @@ export default {
       }).then(data => {
 
           if(data.success){
-              
             this.getFilePayment.exist = true;
             this.getFilePayment.route = data.file
               
