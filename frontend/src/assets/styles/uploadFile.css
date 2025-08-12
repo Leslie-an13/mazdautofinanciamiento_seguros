@@ -17,6 +17,41 @@
   height: 150px;
 }
 
+.containerFilesecond {
+  --transition: 350ms;
+  --folder-W: 94px;
+  --folder-H: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+  background: linear-gradient(135deg, #571828, #00ac94);
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  height: calc(var(--folder-H) * 1.7);
+  position: relative;
+  width: 220px;
+  height: 150px;
+}
+
+.containerFileThree {
+  --transition: 350ms;
+  --folder-W: 94px;
+  --folder-H: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+  background: linear-gradient(135deg, #571828, #3f79fb);
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  height: calc(var(--folder-H) * 1.7);
+  position: relative;
+  width: 220px;
+  height: 150px;
+}
 .folder {
   position: absolute;
   top: 25px;
@@ -55,7 +90,24 @@
 .containerFile:hover .back-side::before {
   transform: rotateX(-5deg) skewX(5deg);
 }
+
+.containerFilesecond:hover .back-side::before {
+  transform: rotateX(-5deg) skewX(5deg);
+}
+
+.containerFileThree:hover .back-side::before {
+  transform: rotateX(-5deg) skewX(5deg);
+}
+
 .containerFile:hover .back-side::after {
+  transform: rotateX(-15deg) skewX(12deg);
+}
+
+.containerFilesecond:hover .back-side::after {
+  transform: rotateX(-15deg) skewX(12deg);
+}
+
+.containerFileThree:hover .back-side::after {
   transform: rotateX(-15deg) skewX(12deg);
 }
 
@@ -64,6 +116,14 @@
 }
 
 .containerFile:hover .front-side {
+  transform: rotateX(-40deg) skewX(15deg);
+}
+
+.containerFilesecond:hover .front-side {
+  transform: rotateX(-40deg) skewX(15deg);
+}
+
+.containerFileThree:hover .front-side {
   transform: rotateX(-40deg) skewX(15deg);
 }
 

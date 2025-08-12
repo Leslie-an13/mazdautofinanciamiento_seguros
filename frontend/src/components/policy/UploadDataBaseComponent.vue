@@ -6,8 +6,8 @@
                 <div class="row">
                     <!--Upload file-->
                     <div class="col-lg-5 mx-auto border-2 border-seconday border-end">
-                        <div class="text-center">
-                            <span class="text-uppercase fw-boldest">Subir base AON</span>
+                        <div class="text-center"> 
+                            <span class="text-uppercase fw-boldest" style="font-family:'Times New Roman', Times, serif; ">Subir base AON</span>
                         </div>
                         <div class="containerFile mx-auto" style="margin-top: 10px;">
                             <div class="folder">
@@ -27,6 +27,7 @@
                           
                         </div>
 
+                        <!--Select status-->
                         <div class="text-center mt-5">
                             <span class="text-dark text-uppercase">aprobar archivo</span>
                         </div>
@@ -50,7 +51,7 @@
                     <!--History file-->
                     <div class="col-lg-5 mx-auto">
                          <div class="text-center mb-3">
-                            <span class="text-uppercase fw-boldest">historial</span>
+                            <span class="text-uppercase fw-boldest" style="font-family:'Times New Roman', Times, serif; ">historial</span>
                         </div>
                         <i class="bi bi-circle me-2" style="color: red;"></i>
                         <span class="text-dark" v-text="uploadFile"></span>

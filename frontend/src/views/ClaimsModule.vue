@@ -33,10 +33,34 @@ export default {
     }
   },
   methods: {
-    
+    getRoutes(){
+
+      //Me falta info
+      fetch('/api/claimsPayments/recordOfInsurancePayments.php', {
+          method: 'GET',
+      }).then(response => {
+          //console.log("Respuesta cruda:", response);
+          if (!response.ok) {
+              throw new Error('Respuesta no OK del servidor: ' + response.status);
+          }
+          return response.json();
+      }).then(data => {
+          if(data.success){
+            this.getFilePayment.exist = true;
+            this.getFilePayment.route = data.history[0].base_file_path_claims  
+          } else {
+            this.getFilePayment.exist = false;
+            this.getFilePayment.route = '';
+          }
+      }).catch(error => {
+          //console.error('Error atrapado en catch:', error);
+          Swal.close();
+      });
+    }
+
   },
   mounted(){
-   
+      this.getRoutes();
 
   }
 }
