@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     getRoutes(){
-
+     
       fetch('/api/claimsPayments/recordOfInsurancePayments.php', {
           method: 'GET',
       }).then(response => {
@@ -44,6 +44,7 @@ export default {
           }
           return response.json();
       }).then(data => {
+
           if(data.success){
             this.getFilesPayments.exist = true;
             this.getFilesPayments.route_1 = data.history[0].base1_file_path  

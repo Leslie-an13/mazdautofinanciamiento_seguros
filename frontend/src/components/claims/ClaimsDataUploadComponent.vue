@@ -255,7 +255,7 @@ function downloadFile(filePath) {
     const link = document.createElement('a'); //Creamos un enlace invisible 
     link.href = `http://localhost/mazdautofinanciamiento_seguros/backend/api/getRouteFiles/download_files_claims.php?file=${encodeURIComponent(fileName)}`;
     link.download = fileName;
-    document.body.appendChild(link); //Se crea esti para que no recargue la pagina, solo descargue archivo
+    document.body.appendChild(link); //Se crea esto para que no recargue la pagina, solo descargue archivo
     link.click();
     document.body.removeChild(link);
 }

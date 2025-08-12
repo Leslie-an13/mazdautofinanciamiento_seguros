@@ -1,10 +1,9 @@
 <?php
-
+#El historial de quien ha cargado la base AON
 header('Access-Control-Allow-Origin: http://localhost:5173');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
-
 
 require_once '../../config/database.php';
 $conexion = new conexionPDO();
