@@ -46,9 +46,7 @@ export default {
         return response.json();
     })
     .then(data => {
-
-        if(data.success){
-            
+        if(data.success){  
           this.getFile.existe = true;
           this.getFile.route = data.file
             
@@ -58,7 +56,7 @@ export default {
         }
     })
     .catch(error => {
-        console.error('Error atrapado en catch:', error);
+        //console.error('Error atrapado en catch:', error);
         Swal.close();
     });
 
