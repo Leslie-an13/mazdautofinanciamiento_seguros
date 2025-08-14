@@ -196,6 +196,7 @@ function questionSaveClaims(){
 }
 //Save information
 function saveInformationTheClaims(){
+    debugger
     let file = document.getElementById('claimsFile').files[0];
     let status = document.getElementById('selectStatus');
     let textSelect = status.options[status.selectedIndex].text;
@@ -214,7 +215,6 @@ function saveInformationTheClaims(){
         allowEscapeKey: false
     }); 
 
-
     fetch('api/databaseClaims/insertClaimsDatabase.php', {
         method: 'POST',
         body: formData
@@ -226,18 +226,17 @@ function saveInformationTheClaims(){
         return response.json();
     })
     .then(data => {
+
         if(data.success){
-            
             Swal.fire({
               icon: "success",
-              title: "Datos insertados correctamente",
+              title: data.message,
               confirmButtonText: "Aceptar",
               confirmButtonColor: "#58A35D",
               showConfirmButton: true
             }).then(() => {
               window.location.reload(); 
             });
-            
         }
     })
     .catch(error => {

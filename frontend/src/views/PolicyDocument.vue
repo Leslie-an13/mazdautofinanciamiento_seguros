@@ -30,37 +30,35 @@ export default {
     }
   },
   methods: {
-    validateRoute() {
-     
+    getRouteFile() {
+         fetch('/api/paymentReceipt/proof_of_payment.php', {
+              method: 'GET',
+          })
+          .then(response => {
+
+              if (!response.ok) {
+                  throw new Error('Respuesta no OK del servidor: ' + response.status);
+              }
+              return response.json();
+          })
+          .then(data => {
+              if(data.success){  
+                this.getFile.existe = true;
+                this.getFile.route = data.file
+                  
+              } else {
+                this.getFile.existe = false;
+                this.getFile.route = '';
+              }
+          })
+          .catch(error => {
+              //console.error('Error atrapado en catch:', error);
+              Swal.close();
+          });
     }
   },
   mounted(){
-    fetch('/api/paymentReceipt/proof_of_payment.php', {
-        method: 'GET',
-    })
-    .then(response => {
-
-        if (!response.ok) {
-            throw new Error('Respuesta no OK del servidor: ' + response.status);
-        }
-        return response.json();
-    })
-    .then(data => {
-        if(data.success){  
-          this.getFile.existe = true;
-          this.getFile.route = data.file
-            
-        } else {
-          this.getFile.existe = false;
-          this.getFile.route = '';
-        }
-    })
-    .catch(error => {
-        //console.error('Error atrapado en catch:', error);
-        Swal.close();
-    });
-
-
+    this.getRouteFile();
   }
 }
 </script>

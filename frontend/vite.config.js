@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
+  base: '/', // <- aquí pones '/' para root del subdominio, o '/subcarpeta/' si aplica
   server: {
     proxy: {
       '/api': {

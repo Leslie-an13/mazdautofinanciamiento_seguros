@@ -14,6 +14,7 @@ import './assets/styles/uploadPay.css'
 import './assets/styles/usersBackground.css'
 import './assets/access/access_denied.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './assets/styles/progress.css'
 import 'bootstrap'
 
 // CoreUI

@@ -7,6 +7,15 @@
           <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">Inicio</span>
         </RouterLink>
       </li>
+
+      <li class="nav-item mb-1  ">
+        <RouterLink to="/uploadAndViewPolicies" class="nav-link">
+          <i class="bi bi-database-add text-white me-2"></i>
+          <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">Subir base</span>
+          
+        </RouterLink>
+      </li>
+
       <li class="nav-item mb-1  ">
         <RouterLink to="/damagePolicy" class="nav-link">
           <i class="bi bi-file-earmark-spreadsheet text-white me-2"></i>
