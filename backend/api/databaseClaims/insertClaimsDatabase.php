@@ -9,6 +9,8 @@ require_once '../../config/database.php';
 $conexion = new conexionPDO();
 $pdo = $conexion->getConexion();
 
+date_default_timezone_set('America/Mexico_City');
+
 $func = $_POST['func'];
 
 if($func == 'upload_claims_database'){
@@ -37,34 +39,74 @@ if($func == 'upload_claims_database'){
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if($result){
-                $stmt_insert = $pdo->prepare("
-                    INSERT INTO claims_database 
-                    (user_id, file_upload_date, user_file_claims_date, base_file_path_claims, status_upload_file, date_route) 
-                    VALUES (?, ?, ?, ?, ?, ?)
-                ");
+
+                $year = date('Y');
+                $month = date('m');
+
+                $stmt_update = $pdo->prepare("SELECT base_file_path_claims FROM claims_database WHERE base_file_path_claims <> '' 
+                            AND YEAR(date_route) = ? AND MONTH(date_route) = ? ");
+
+                $stmt_update->execute([$year, $month]);
+                $result_update = $stmt_update->fetch(PDO::FETCH_ASSOC);
+
+                if($result_update){
+
+                    $stmt_up = $pdo->prepare("UPDATE claims_database SET user_id = ?, file_upload_date = ?, user_file_claims_date = ?, 
+                        base_file_path_claims = ?, status_upload_file = ?, date_route = ?
+                        WHERE YEAR(date_route) = ? AND MONTH(date_route) = ? ");
+
+               
+                    $nombreCompleto = $result['names'] . ' ' . $result['paternal_last_name'] . ' ' . $result['maternal_last_name'];
+
+                    $stmt_up->execute([
+                            $result['idUser'],
+                            'El usuario  ' . $nombreCompleto . ' actualizo el archivo ' . date('Y-m-d H:i:s'),
+                            'El usuario ' . $nombreCompleto . ' aprobo y actualizo el archivo ' . date('Y-m-d H:i:s'),
+                            $targetFile,
+                            $status,
+                            date('Y-m-d H:i:s'),
+                            $year,
+                            $month
+                        ]);
+
+                        echo json_encode([
+                            'success' => true,
+                            'message' => 'El archivo se ha actualizado correctamente.',
+                            'ruta' => $targetFile
+                        ]);
+
+                } else {
+
+                    $stmt_insert = $pdo->prepare("
+                            INSERT INTO claims_database 
+                            (user_id, file_upload_date, user_file_claims_date, base_file_path_claims, status_upload_file, date_route) 
+                            VALUES (?, ?, ?, ?, ?, ?)");
 
 
-                $nombreCompleto = $result['names'] . ' ' . $result['paternal_last_name'] . ' ' . $result['maternal_last_name'];
+                        $nombreCompleto = $result['names'] . ' ' . $result['paternal_last_name'] . ' ' . $result['maternal_last_name'];
 
-                $stmt_insert->execute([
-                    $result['idUser'],
-                    'El usuario ' . $nombreCompleto . ' ha cargado el archivo el ' . date('Y-m-d H:i:s'),
-                    'El usuario ' . $nombreCompleto . ' aprobo el archivo el ' . date('Y-m-d H:i:s'),
-                    $targetFile,
-                    $status,
-                    date('Y-m-d H:i:s')
-                ]);
+                        $stmt_insert->execute([
+                            $result['idUser'],
+                            'El usuario ' . $nombreCompleto . 'ha cargado el archivo el ' . date('Y-m-d H:i:s'),
+                            'El usuario ' . $nombreCompleto . 'aprobo el archivo el ' . date('Y-m-d H:i:s'),
+                            $targetFile,
+                            $status,
+                            date('Y-m-d H:i:s')
+                        ]);
 
-                echo json_encode([
-                    'success' => true,
-                    'message' => 'Archivo guardado exitosamente.',
-                    'ruta' => $targetFile
-                ]);
-            } else {
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Error al guardar el archivo.'
-                ]);
+                        echo json_encode([
+                            'success' => true,
+                            'message' => 'El archivo se ha guardado exitosamente.',
+                            'ruta' => $targetFile
+                        ]);
+                    }
+
+                    
+                } else {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'Error al guardar el archivo.'
+                    ]);
             }
         }
 

@@ -39,16 +39,15 @@ if (isset($_FILES['filePayment']) && isset($_POST['status'])) {
         if ($result) {
             $stmt_insert = $pdo->prepare("
                 INSERT INTO payment_proof_history 
-                (user_id, proof_upload_date, user_approval_date, base_proof_path, status_upload_file, payment_file_created) 
-                VALUES (?, ?, ?, ?, ?, ?)
+                (user_id, user_approval_date, base_proof_path, status_upload_file, payment_file_created) 
+                VALUES (?, ?, ?, ?, ?)
             ");
 
             $nombreCompleto = $result['names'] . ' ' . $result['paternal_last_name'] . ' ' . $result['maternal_last_name'];
 
             $stmt_insert->execute([
                 $result['idUser'],
-                'El usuario ' . $nombreCompleto . ' ha cargado el archivo el ' . date('Y-m-d H:i:s'),
-                'El usuario ' . $nombreCompleto . ' aprobo el archivo el ' . date('Y-m-d H:i:s'),
+                'El usuario ' . $nombreCompleto . ' ha cargado el comprobante ' . date('Y-m-d H:i:s'),
                 $targetFile,
                 $status_file,
                 date('Y-m-d H:i:s')

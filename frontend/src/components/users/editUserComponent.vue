@@ -195,10 +195,7 @@ function validateValues(userID){
     if(valid){
         questionEditUser(userID);
     }
-
-
 }
-
 
 function questionEditUser(userID){
     Swal.fire({

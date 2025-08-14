@@ -9,25 +9,44 @@ require_once '../../config/database.php';
 $conexion = new conexionPDO();
 $pdo = $conexion->getConexion();
 
-$dateActually = date('Y-m-d');
-$monthActually = date('m', strtotime($dateActually));
-$yearActually = date('Y', strtotime($dateActually));
+$year = date('Y');
+$month = date('m');
+$status = "Aprobar base";
 
 
-$stmt = $pdo->prepare("SELECT * FROM damage_policy_history WHERE base_file_path_aon <> ''
-                        AND MONTH(date_route) = MONTH(CURDATE())
-                        AND YEAR(date_route) = YEAR(CURDATE())");
-    $stmt->execute();
+$stmt = $pdo->prepare("SELECT * FROM damage_policy_history WHERE base_approval_status = ?
+                        AND YEAR(date_create_at) = ?
+                        AND MONTH(date_create_at) = ? ");
+    $stmt->execute([$status, $year, $month]);
     $file = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if($file){
-        $response = [
+
+        $stmt_file = $pdo->prepare("SELECT * FROM insurance_base WHERE base_path <> ''
+                    AND YEAR(created_at) = ? AND MONTH(created_at) = ?");
+
+        $stmt_file->execute([$year,$month]);
+        $result = $stmt_file->fetch(PDO::FETCH_ASSOC);
+
+        if($result){
+            $response = [
                 'success' => true,
                 'message' => 'Los datos se procesaron correctamente',
-                'file' => $file['base_file_path_aon']
+                'file' => $result['base_path']
             ];
             
             echo json_encode($response);
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'No existe la ruta',
+            ];
+            
+            echo json_encode($response);
+        }
+
+
+       
     } else {
         $response = [
                 'success' => false,

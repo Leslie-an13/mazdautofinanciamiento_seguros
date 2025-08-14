@@ -8,6 +8,7 @@ import PolicyDocument from '../views/PolicyDocument.vue';
 import ClaimsModule from '../views/ClaimsModule.vue';
 import AccessDenied from '../views/AccessDenied.vue';
 import ClaimsPayment from '../views/ClaimsPayment.vue';
+import UploadAndViewPolicies from '../views/UploadAndViewPolicies.vue';
 import Users from '../views/Users.vue';
 import { currentUser } from '../auth';
 
@@ -65,6 +66,17 @@ const routes = [
     children: [{
       path: '',
       component: ClaimsPayment
+    }]
+  },
+  { path: '/uploadAndViewPolicies', component: UploadAndViewPolicies,
+    component: MainLayout,
+    meta: {
+      requiresAuth: true,
+      role: ['admin']
+    },
+    children: [{
+      path: '',
+      component: UploadAndViewPolicies
     }]
   },
   { path: '/users', component: Users,

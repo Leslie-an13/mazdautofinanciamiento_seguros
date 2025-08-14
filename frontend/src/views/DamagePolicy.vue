@@ -3,12 +3,13 @@
   <div style="background-color: rgb(222, 222, 222); height: 25px;">
         <i class="bi bi-caret-right"></i>
         <span class="text-uppercase fw-boldest" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',            'Lucida Sans', Arial, sans-serif; font-size: 11px;">
-            subir base AON
+            Aprobar datos
         </span>
   </div>
 
   <div class="row imgFondo">
-    <UploadDataBaseComponent  :getRouteFile="getFilePayment"/>
+    <UploadDataBaseComponent  :getRouteFile="getFilePayment"
+                              :getRoute="getDataBase"  />
   </div>
 </template>
 
@@ -25,13 +26,16 @@ export default {
       getFilePayment: {
         exist: false,
         route: ''
+      },
+      getDataBase: {
+        exist: false,
+        route: ''
       }
     }
   },
   methods: {
-
     getRoute(){
-
+     
       fetch('/api/getPolicy/download_policy_payment_receipt.php', {
           method: 'GET',
       }).then(response => {
@@ -55,12 +59,40 @@ export default {
           Swal.close();
       });
 
+    },
+
+    getBase(){
+        fetch('/api/dataBaseAon/consultFileInBase.php', {
+          method: 'GET',
+        }).then(response => {
+            //console.log("Respuesta cruda:", response);
+            if (!response.ok) {
+                throw new Error('Respuesta no OK del servidor: ' + response.status);
+            }
+            return response.json();
+        }).then(data => {
+
+            if(data.success){
+              this.getDataBase.exist = true;
+              this.getDataBase.route = data.history[0].base_path;
+                
+            } else {
+              this.getDataBase.exist = false;
+              this.getDataBase.route = '';
+            }
+
+        }).catch(error => {
+            //console.error('Error atrapado en catch:', error);
+            Swal.close();
+        });
     }
 
   },
   mounted(){
 
     this.getRoute();
+    this.getBase();
+
       
   }
 }
