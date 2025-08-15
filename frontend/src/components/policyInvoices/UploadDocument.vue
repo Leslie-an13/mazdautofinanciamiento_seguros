@@ -2,7 +2,7 @@
     <div class="col-lg-11 mx-auto" style="margin-top: 55px;">
         <div class="row">
             <div class="col-lg-6 mx-auto col-sm-12">
-                <div class="card shadow rounded" style="height: 420px;">
+                <div class="card shadow rounded" style="height: 360px;">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-4 col-sm-12 mx-auto">
@@ -55,11 +55,11 @@
 
                             <div class="col-lg-8 col-sm-12 mx-auto">
                                 <div class="text-center">
-                                    <span>subir base</span>
+                                    <span class="text-uppercase" style="font-size: 14px; margin-left: 80px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">subir base</span>
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <div class="containerFile mx-auto" style="margin-top: 30px;">
+                                    <div class="containerFile" style="margin-top: 30px; margin-left: 65px;">
                                         <div class="folder">
                                         <div class="front-side">
                                         <div class="tip"></div>
@@ -82,7 +82,7 @@
                                 <div class="d-flex justify-content-end" style="margin-top: 90px;">
                                     <button class="btn btn-sm btn-success" @click="validateFile()">
                                         <i class="bi bi-floppy me-2 text-white"></i>
-                                        <span class="text-uppercase fw-boldest text-white" style="font-size: 13px;">
+                                        <span class="text-uppercase text-white" style="font-size: 13px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
                                             guardar
                                         </span>
                                     </button>
@@ -97,7 +97,7 @@
                 <div class="card shadow rounded">
                     <div class="card-body">
                       <div class="text-center">
-                            <span class="text-uppercase fw-boldest" style="font-size: 14px;">Descargar comprobante</span>
+                            <span class="text-uppercase fw-boldest" style="font-size: 14px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Descargar comprobante</span>
                         </div>
 
                         <div class="d-flex justify-content-center">
@@ -196,8 +196,7 @@ function saveFileAon(){
     let formData = new FormData();
     formData.append('file', file);
     formData.append('func', 'saveDataBase');
-    debugger
-
+ 
     fetch('/api/dataBaseAon/insertDataFile.php', {
         method: 'POST',
         body: formData
@@ -314,7 +313,6 @@ function checkPayment(){
         }
         return response.json();
     }).then(data => {
-        debugger
         if(data.success){
             stepsDone.value.confirm = true;
             currentStep.value = 'confirm';
@@ -322,7 +320,6 @@ function checkPayment(){
             routetofile.value.route = data.file;
             routetofile.value.exist = true;
         } else {
-            debugger
             currentStep.value = 'confirm';
             statusThree.value = 'Pendiente';
             routetofile.value.route = '';

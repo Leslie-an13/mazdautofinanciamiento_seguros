@@ -11,7 +11,7 @@
 
                         <!--text-->
                         <div class="text-center mt-3 mb-3">
-                            <span class="fw-bolder text-uppercase fs-6" style="font-family:'Times New Roman', Times, serif; ">
+                            <span class="text-uppercase fs-6 " style="font-size: 14px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
                                 descargar base aon</span>
                         </div>
 
@@ -39,7 +39,7 @@
                             <!--Upload file-->
                             <div class="col-lg-7">
                                  <div class="text-center mt-3 mb-3">
-                                    <span class="text-uppercase fw-bolder fs-7" style="font-family:'Times New Roman', Times, serif; ">
+                                    <span class="text-uppercase" style="font-size: 14px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
                                         subir comprobante de pago
                                     </span>
                                 </div>
@@ -86,7 +86,7 @@
 
                             <div class="col-lg-5">
                                 <div class="text-center mt-3">
-                                    <span class="text-uppercase fs-6 fw-bold" style="font-family:'Times New Roman', Times, serif; ">
+                                    <span class="text-uppercase fs-6" style="font-size: 14px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
                                         historial
                                     </span>
                                 </div>

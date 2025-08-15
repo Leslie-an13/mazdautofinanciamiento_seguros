@@ -1,5 +1,5 @@
 .stepper-box {
-  background-color: white;
+  background-color: rgb(231,231,231);
   border-radius: 12px;
   padding: 32px;
   width: 220px;
@@ -22,8 +22,8 @@
   top: 40px;
   bottom: -32px;
   width: 2px;
-  background-color: #e2e8f0;
   z-index: 1;
+  background-color: rgb(255, 255, 255);
 }
 
 .stepper-step:last-child .stepper-line {
