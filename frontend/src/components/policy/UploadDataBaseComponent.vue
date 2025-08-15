@@ -8,7 +8,7 @@
                 <div class="card shadow rounded">
                     <div class="card-body">
                         <div class="text-center">
-                            <span class="text-uppercase fw-boldest" style="font-size: 14px;">Descargar base</span>
+                            <span class="text-uppercase" style="font-size: 14px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Descargar base</span>
                         </div>
 
                         <div class="d-flex justify-content-center mt-3 mb-3">
@@ -44,18 +44,25 @@
                 <div class="card shadow" style="height: 510px;">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-8 mx-auto">
+                            <div class="col-lg-8 mx-auto border-2 border-light-secondary border-end">
                                 <div class="text-center">
-                                    <span class="text-uppercase fw-boldest" style="font-size: 14px;">historial</span>
+                                    <span class="text-uppercase" style="font-size: 14px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">historial</span>
                                 </div>
-
-                                <i class="bi bi-circle me-2" style="color: red;"></i>
-                                <span class="text-dark" v-text="uploadFile"></span>
+                                
+                                <template v-if="uploadFile != '' ">
+                                    <i class="bi bi-circle me-2" style="color: red;"></i>
+                                    <span class="text-dark" v-text="uploadFile"></span>
+                                </template>
                                 <br>
+                                <template v-if="approvedFile != '' ">
+                                    <i class="bi bi-circle me-2" style="color: red;"></i>
+                                    <span class="text-dark" v-text="approvedFile"></span>
+                                </template>
+                                
                             </div>
                             <div class="col-lg -5 mx-auto">
                                 <div class="text-center">
-                                    <span class="text-uppercase fw-boldest" style="font-size: 14px;">Descargar comprobante</span>
+                                    <span class="text-uppercase" style="font-size: 14px; ">Descargar comprobante</span>
                                 </div>
 
                                 <div class="d-flex justify-content-center">
@@ -115,6 +122,7 @@ import { onBeforeMount, ref, computed} from 'vue';
 import Swal from 'sweetalert2'
 
 const uploadFile = ref('');
+const approvedFile = ref('');
 
 function validatePayment(){
     let select1 = document.getElementById('selectPayment').value;
@@ -160,8 +168,7 @@ function questionPayment(){
 }
 
 function savePaymentStatus(){
-    debugger
-
+   
     let select = document.getElementById('selectPayment');
     let textSelect = select.options[select.selectedIndex].text;
 
@@ -333,8 +340,7 @@ onBeforeMount(async() =>{
 
         if(response.success){
             uploadFile.value = response.history[0].	base_file_approved;
-           // approvedFile.value = response.history[0].user_file_date
-        
+            approvedFile.value = response.history[0].invoice_approved;
         }
     })
 })
