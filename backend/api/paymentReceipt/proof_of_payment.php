@@ -12,7 +12,7 @@ $pdo = $conexion->getConexion();
 $year = date('Y');
 $month = date('m');
 $status = "Aprobar base";
-
+//Se obtiene la ruta del pago, solo cuando la base haya sido aprobada
 
 $stmt = $pdo->prepare("SELECT * FROM damage_policy_history WHERE base_approval_status = ?
                         AND YEAR(date_create_at) = ?
