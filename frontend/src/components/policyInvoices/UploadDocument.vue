@@ -173,7 +173,7 @@ function validateFile(){
 
 function questionSaveFile(){
 
-     Swal.fire({
+    Swal.fire({
         title: '&iquest;Est&aacute;s seguro?',
         text: "Se guardara el archivo",
         icon: "question",

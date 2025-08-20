@@ -1,4 +1,4 @@
-<template>
+<template class="imgFondo">
      <!--title-->
     <div style="background-color: rgb(222, 222, 222); height: 25px;">
             <i class="bi bi-caret-right"></i>
@@ -7,7 +7,9 @@
             </span>
     </div>
 
-    <div class="row imgFondo">
+
+    
+    <div class="row ">
         <ClaimsPaymentComponent :getFilePayment="getFilePayment"></ClaimsPaymentComponent>
     </div>
 

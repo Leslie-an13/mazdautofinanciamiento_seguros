@@ -8,7 +8,7 @@
   </div>
 
   <div class="row imgFondo">
-
+    <UploadClaimsFile></UploadClaimsFile>
   </div>
 
 </template>
@@ -16,10 +16,11 @@
 
 <script>
 import Swal from 'sweetalert2'
+import UploadClaimsFile from '../components/claimsUploads/UploadClaimsFile.vue';
 
 export default {
   components: { 
-    
+    UploadClaimsFile
   },
   data() {
     return {
