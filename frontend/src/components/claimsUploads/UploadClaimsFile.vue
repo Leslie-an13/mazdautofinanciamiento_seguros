@@ -57,19 +57,19 @@
                                     </div>
 
                                     <div class="stepper-step" :class="getClass('review')">
-                                        <div class="stepper-circle">2</div>
+                                        <div class="stepper-circle">3</div>
                                         <div class="stepper-line"></div>
                                         <div class="stepper-content">
                                             <div class="stepper-title">Validando</div>
-                                            <!--<div class="stepper-status" v-text="statuStepSecond"></div>-->
+                                            <div class="stepper-status" v-text="statusThree"></div>
                                         </div>
                                     </div>
 
                                     <div class="stepper-step" :class="getClass('confirm')">
-                                        <div class="stepper-circle">3</div>
+                                        <div class="stepper-circle">4</div>
                                         <div class="stepper-content">
-                                            <div class="stepper-title">Comprobante</div>
-                                            <!--<div class="stepper-status" v-text="statusThree"></div>-->
+                                            <div class="stepper-title" style="font-family: 13px;">Comprobante</div>
+                                            <div class="stepper-status" v-text="statusFour"></div>
                                         </div>
                                     </div>
 
@@ -103,7 +103,7 @@
                                 </div>
 
                                 <!--Button-->
-                                <div class="d-flex justify-content-end" style="margin-top: 90px;">
+                                <div class="d-flex justify-content-end" style="margin-top: 130px;">
                                     <button class="btn btn-sm btn-success" @click="validateFile()">
                                         <i class="bi bi-floppy me-2 text-white"></i>
                                         <span class="text-uppercase text-white" style="font-size: 13px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
@@ -120,7 +120,7 @@
             <!--Download file-->
             <div class="col-lg-7 mx-auto">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="card shadow">
                             <div class="card-body">
 
@@ -142,14 +142,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="card shadow">
-                            <div class="card-body">
-                                hols
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="card shadow">
                             <div class="card-body">
                                 hols
@@ -168,10 +161,10 @@
 import { computed, ref, onMounted } from 'vue';
 import Swal from 'sweetalert2';
 
-const statuStep = ref('');
-const statuStepSecond = ref('');
+const statuStep = ref('Pendiente');
+const statuStepSecond = ref('Pendiente');
 const statusThree = ref('');
-const statusFour = ref('');
+const statusFour = ref('Pendiente');
 const selectFileName = ref('')
 const currentStep = ref('');
 
@@ -312,6 +305,7 @@ function checkFile(){
 
             currentStep.value = 'reviewFile';
             currentStep.value = 'Pendiente';
+            stepsDone.value.reviewFile = true;
             document.getElementById('successIcon').classList.add('d-none');
             document.getElementById('iconValue').classList.remove('d-none');
         }
@@ -322,6 +316,44 @@ function checkFile(){
     });
 }
 
+function getFileClaims(){
+
+    fetch('/api/databaseClaims/consult_outstanding_balances.php', {
+        method: 'GET',
+    }).then(response => {
+        console.log("Respuesta cruda:", response);
+        if (!response.ok) {
+            throw new Error('Respuesta no OK del servidor: ' + response.status);
+        }
+        return response.json();
+    }).then(data => {
+
+        if(data.success){
+        
+            stepsDone.value.upload = true;
+            statuStepSecond.value = 'Completado';
+
+            currentStep.value = 'review';
+            statusThree.value = 'Pendiente';
+            document.getElementById('successUpload').classList.remove('d-none');
+            document.getElementById('iconBase').classList.add('d-none');
+            routetofile.value.route = data.history[0].base_path
+            routetofile.value.exist = true;
+          
+        } else {
+            currentStep.value = 'upload';
+            statuStepSecond.value = 'Pendiente';
+            document.getElementById('successUpload').classList.add('d-none');
+            document.getElementById('iconBase').classList.remove('d-none');
+        }
+    })
+    .catch(error => {
+        console.error('Error atrapado en catch:', error);
+        Swal.close();
+    });
+
+}
+
 const downloadUrl = computed(() => {
   if (!routetofile.value || !routetofile.value.route) return '';
   const fileName = routetofile.value.route.split('/').pop(); 
@@ -330,6 +362,7 @@ const downloadUrl = computed(() => {
 
 onMounted(() => {
     checkFile();
+    getFileClaims()
 });
 
 

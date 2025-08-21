@@ -35,8 +35,8 @@ export default {
   },
   methods: {
     getRoute(){
-
-      fetch('/api/databaseClaims/getClaimsData.php', {
+      debugger
+      fetch('/api/databaseClaims/consultFileInBaseClaims.php', {
           method: 'GET',
       }).then(response => {
           //console.log("Respuesta cruda:", response);

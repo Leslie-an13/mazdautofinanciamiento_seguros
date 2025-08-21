@@ -18,17 +18,19 @@ if ($func === 'consultFileIfExist') {
     $year = date('Y');
     $month = date('m');
 
-    $stmt_consult= $pdo->prepare("SELECT claims_path FROM claims_database WHERE claims_path <> '' 
+    $stmt_consult= $pdo->prepare("SELECT * FROM claims_database WHERE claims_path <> '' 
             AND YEAR(created_at) = ? AND MONTH(created_at) = ? ");
 
         $stmt_consult->execute([$year, $month]);
         $result_consult = $stmt_consult->fetch(PDO::FETCH_ASSOC);
 
+
         if($result_consult){
 
             $response = [
                 "success" => true,
-                "message" => "Existe la base de este mes"
+                "message" => "Existe la base de este mes",
+                'history' => $result_consult
             ];
 
         } else {

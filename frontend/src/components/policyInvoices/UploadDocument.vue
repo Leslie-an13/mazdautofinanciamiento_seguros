@@ -43,7 +43,7 @@
                                     <div class="stepper-step" :class="getClass('confirm')">
                                         <div class="stepper-circle">3</div>
                                         <div class="stepper-content">
-                                            <div class="stepper-title">Comprobante</div>
+                                            <div class="stepper-title" style="font-size: 14px;">Comprobante</div>
                                             <div class="stepper-status" v-text="statusThree"></div>
                                         </div>
                                     </div>
