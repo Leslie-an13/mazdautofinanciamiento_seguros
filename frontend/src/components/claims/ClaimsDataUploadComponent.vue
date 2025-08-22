@@ -99,7 +99,47 @@
             </div>
             <div class="col-lg-3 mx-auto">
                 <div class="card">
-                    <div class="card-body"></div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center mt-3">
+                            <span class="text-uppercase" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">descargar archivos</span>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a class="buttonDown "  style="color: inherit; text-decoration: none;">
+                                <span class="button__text text-white">Download</span>
+                                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" class="svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path></svg></span>
+                            </a>
+                         </div>
+                         <div class="d-flex justify-content-center mt-5">
+                            <a class="buttonDown "  style="color: inherit; text-decoration: none;">
+                                <span class="button__text text-white">Download</span>
+                                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" class="svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path></svg></span>
+                            </a>
+                         </div>
+
+                         <div class="d-flex justify-content-center mt-5">
+                            <a class="buttonDown "  style="color: inherit; text-decoration: none;">
+                                <span class="button__text text-white">Download</span>
+                                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" class="svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path></svg></span>
+                            </a>
+                         </div>
+
+                         <div class="d-flex justify-content-center mt-4">
+                            <select class="form-select form-select-sm w-75" 
+                                id="selectFiles"    
+                            aria-label="Small select example">
+                                <option value="0">Selecciona un estatus</option>
+                                <option value="1">Aprobar archivos</option>
+                                <option value="2">Rechazar archivos</option>
+                            </select>
+                         </div>
+
+                         <div class="d-flex justify-content-end mt-4">
+                            <button class="btn btn-sm btn-success" type="button" @click="validateFiles()">
+                                <span class="text-uppercase text-white">guardar</span>
+                            </button>
+                         </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,6 +234,15 @@ function saveFileClaims(){
     let status = document.getElementById('selectStatus');
     let textSelect = status.options[status.selectedIndex].text;
 
+     Swal.fire({
+        title: "Procesando...",
+        text: "Por favor, espera mientras se procesa la informacion.",
+        icon: "info",
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        allowEscapeKey: false
+    }); 
+
     let formData = new FormData();
     formData.append('file', file);
     formData.append('func', 'claims_database');
@@ -274,9 +323,20 @@ function saveInfoUpload(){
     let status = document.getElementById('selectStatusBase');
     let textSelect = status.options[status.selectedIndex].text;
 
+    Swal.fire({
+        title: "Procesando...",
+        text: "Por favor, espera mientras se procesa la informacion.",
+        icon: "info",
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        allowEscapeKey: false
+    }); 
+
     let formData = new FormData();
     formData.append('select', textSelect);
     formData.append('func', 'updateInfoBase');
+
+
 
     fetch('/api/claimsPayments/updatePaymentRecord.php', {
         method: 'POST',
@@ -322,6 +382,94 @@ function saveInfoUpload(){
     });
 }
 
+function validateFiles(){
+    let files = document.getElementById('selectFiles').values;
+    let valid = true;
+
+    if(files == "0"){
+        Swal.fire({
+            toast: true,
+            position: 'top-end', 
+            icon: 'warning',     
+            title: 'Invalido debes seleccionar un estatus',
+            showConfirmButton: false,
+            timer: 3000, 
+            timerProgressBar: true
+        });
+        valid = false;
+        return;
+    }
+
+    if(valid){
+        questionSaveStatusToFiles();
+    }
+
+}
+
+function questionSaveStatusToFiles(){
+    Swal.fire({
+        title: '&iquest;Est&aacute;s seguro?',
+        text: "Se aprobaran los archivos",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar!",
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#45A141",
+        cancelButtonColor: "#F62E2E",
+        reverseButtons: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            saveStatuToFiles();
+        }
+    });
+}
+
+function saveStatuToFiles(){
+
+    let files = document.getElementById('selectFiles').values;
+    let textStatus = files.options[files.selectedIndex].text;
+    let formData = new FormData();
+    formData.append('statusFiles', textStatus)
+
+    Swal.fire({
+        title: "Procesando...",
+        text: "Por favor, espera mientras se procesa la informacion.",
+        icon: "info",
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        allowEscapeKey: false
+    }); 
+
+    fetch('/api/claimsPayments/updatePayments.php', {
+        method: 'POST',
+        body: formData
+    }).then(response => {
+        //console.log("Respuesta cruda:", response);
+        if (!response.ok) {
+            throw new Error('Respuesta no OK del servidor: ' + response.status);
+        }
+        return response.json();
+    }).then(data => {
+        if(data.success){
+         
+            Swal.fire({
+              icon: "success",
+              title: "Datos insertados correctamente",
+              confirmButtonText: "Aceptar",
+              confirmButtonColor: "#58A35D",
+              showConfirmButton: true
+            }).then(() => {
+              location.reload(); 
+            });
+            
+        }
+    })
+    .catch(error => {
+       // console.error('Error atrapado en catch:', error);
+        Swal.close();
+    });
+
+}
 
 const downloadFileBase = computed(() => {
  
@@ -331,9 +479,10 @@ const downloadFileBase = computed(() => {
   return `http://localhost/mazdautofinanciamiento_seguros/backend/api/getRouteFiles/download_outstanding_balances.php?file=${fileName}`;
 });
 
-onBeforeMount(()=>{
-    debugger
 
+
+onBeforeMount(()=>{
+    
     let formData = new FormData();
     formData.append('func', 'consultFileIfExist');
     fetch('/api/databaseClaims/consultFileInBaseClaims.php', {
