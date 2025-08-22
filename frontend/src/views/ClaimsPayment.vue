@@ -10,7 +10,7 @@
 
     
     <div class="row ">
-        <ClaimsPaymentComponent :getFilePayment="getFilePayment"></ClaimsPaymentComponent>
+        <ClaimsPaymentComponent :getRouteClaims="getRouteClaims"></ClaimsPaymentComponent>
     </div>
 
 </template>
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      getFilePayment: {
+      getRouteClaims: {
         exist: false,
         route: ''
       }
@@ -35,36 +35,37 @@ export default {
   },
   methods: {
     getRoute(){
-      debugger
-      fetch('/api/databaseClaims/consultFileInBaseClaims.php', {
-          method: 'GET',
-      }).then(response => {
-          //console.log("Respuesta cruda:", response);
-          if (!response.ok) {
-              throw new Error('Respuesta no OK del servidor: ' + response.status);
-          }
-          return response.json();
-      }).then(data => {
-          if(data.success){
-            this.getFilePayment.exist = true;
-            this.getFilePayment.route = data.history[0].base_file_path_claims  
-          } else {
-            this.getFilePayment.exist = false;
-            this.getFilePayment.route = '';
-          }
-      }).catch(error => {
-          //console.error('Error atrapado en catch:', error);
-          Swal.close();
-      });
-    }
 
+        fetch('/api/databaseClaims/checkStatusAndShowFile.php', {
+            method: 'GET',
+        })
+        .then(response => {
+            //console.log("Respuesta cruda:", response);
+            if (!response.ok) {
+                throw new Error('Respuesta no OK del servidor: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if(data.success){
+              this.getRouteClaims.exist = true;
+              this.getRouteClaims.route = data.route
+              debugger
+
+                
+            }
+        })
+        .catch(error => {
+          // console.error('Error atrapado en catch:', error);
+            Swal.close();
+        });
+
+
+    }
   },
   mounted(){
-
+    debugger
     this.getRoute();
-
-
-
   }
 }
 
