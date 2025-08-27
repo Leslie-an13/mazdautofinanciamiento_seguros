@@ -8,36 +8,43 @@
         </RouterLink>
       </li>
 
-      <li class="nav-item mb-1  ">
+      <li class="nav-item mb-1">
         <RouterLink to="/uploadAndViewPolicies" class="nav-link">
           <i class="bi bi-database-add text-white me-2"></i>
-          <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">Subir base</span>
+          <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">Subir edo. aseguradoras</span>
           
         </RouterLink>
       </li>
 
-      <li class="nav-item mb-1  ">
-        <RouterLink to="/damagePolicy" class="nav-link">
+      <li class="nav-item mb-1">
+        <RouterLink to="/insuranceFilesApproval" class="nav-link">
           <i class="bi bi-file-earmark-spreadsheet text-white me-2"></i>
           <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">Poliza por daños</span>
           
         </RouterLink>
       </li>
-      <li class="nav-item mb-1 ">
+      <li class="nav-item mb-1 d-none">
         <RouterLink to="/policyDocument" class="nav-link">
           <i class="bi bi-file-earmark-pdf text-white me-2"></i>
           <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">Pago comprobante polizas</span>
           
         </RouterLink>
       </li>
-      <li class="nav-item mb-1 ">
+      <li class="nav-item mb-1 d-none">
         <RouterLink to="/uploadAndViewClaims" class="nav-link">
           <i class="bi bi-database-add text-white me-2"></i>
           <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">Subir siniestros</span>
           
         </RouterLink>
       </li>
-      <li class="nav-item mb-1 ">
+      <li class="nav-item mb-1 d-none">
+        <RouterLink to="/uploadAndViewClaims" class="nav-link">
+          <i class="bi bi-database-add text-white me-2"></i>
+          <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">Pago de UDI</span>
+          
+        </RouterLink>
+      </li>
+      <li class="nav-item mb-1 d-none">
         <RouterLink to="/claimsModule" class="nav-link">
           <i class="bi bi-car-front me-2 text-white"></i>
           <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">
@@ -46,7 +53,7 @@
           
         </RouterLink>
       </li>
-      <li class="nav-item mb-1 ">
+      <li class="nav-item mb-1 d-none">
         <RouterLink to="/claimsPayment" class="nav-link">
           <i class="bi bi-bank text-white me-2"></i>
           <span style="font-family: 'Times New Roman', Times, serif; color: rgb(255, 255, 255);">

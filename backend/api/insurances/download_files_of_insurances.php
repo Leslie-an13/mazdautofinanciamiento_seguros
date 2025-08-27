@@ -9,22 +9,23 @@ require_once '../../config/database.php';
 $conexion = new conexionPDO();
 $pdo = $conexion->getConexion();
 
-$dateActually = date('Y-m-d');
-$monthActually = date('m', strtotime($dateActually));
-$yearActually = date('Y', strtotime($dateActually));
+$month = (int) date('n'); 
+$year = date('Y');     
 
+    $stmt = $pdo->prepare("SELECT * FROM insurance_data 
+                       WHERE file_path <> ''
+                       AND report_month = ? 
+                       AND report_year = ?");
 
-$stmt = $pdo->prepare("SELECT * FROM payment_proof_history WHERE base_proof_path <> ''
-                        AND MONTH(payment_file_created) = MONTH(CURDATE())
-                        AND YEAR(payment_file_created) = YEAR(CURDATE())");
-    $stmt->execute();
-    $file = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->execute([$month, $year]);
+    
+    $files = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if($file){
+    if($files){
         $response = [
                 'success' => true,
                 'message' => 'Los datos se procesaron correctamente',
-                'file' => $file['base_proof_path']
+                'files' => $files
             ];
             
             echo json_encode($response);

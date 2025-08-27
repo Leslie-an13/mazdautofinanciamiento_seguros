@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column min-vh-100">
-    <!-- HEADER -->
+  
     <header class="navbar navbar-dark bg-dark">
       <div class="container-fluid d-flex justify-content-between align-items-center">
         <span class="navbar-brand mb-0 h1">Mi Dashboard</span>

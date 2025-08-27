@@ -48,7 +48,7 @@
                                             </svg>
 
                                         </div>
-                                        <div class="stepper-circle" id="iconBase">1</div>
+                                        <div class="stepper-circle" id="iconBase">2</div>
                                         <div class="stepper-line"></div>
                                         <div class="stepper-content">
                                             <div class="stepper-title">Subir base</div>
@@ -56,19 +56,36 @@
                                         </div>
                                     </div>
 
-                                    <div class="stepper-step" :class="getClass('review')">
-                                        <div class="stepper-circle">3</div>
+                                    <div class="stepper-step" :class="getClass('reviewFile')">
+                                        
+                                        <div class="stepper-circle" v-if="statuStep === 'Completado'">
+                                            <svg
+                                            viewBox="0 0 16 16"
+                                            class="bi bi-check-lg"
+                                            fill="currentColor"
+                                            height="16"
+                                            width="16"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                            <path
+                                                d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"
+                                            ></path>
+                                            </svg>
+                                        </div>
+
+                                        <div class="stepper-circle" v-else>3</div>
+
                                         <div class="stepper-line"></div>
                                         <div class="stepper-content">
-                                            <div class="stepper-title">Validando</div>
-                                            <div class="stepper-status" v-text="statusThree"></div>
+                                            <div class="stepper-title">Base insolutos</div>
+                                            <div class="stepper-status">{{ statuStep }}</div>
                                         </div>
                                     </div>
 
                                     <div class="stepper-step" :class="getClass('confirm')">
                                         <div class="stepper-circle">4</div>
                                         <div class="stepper-content">
-                                            <div class="stepper-title" style="font-family: 13px;">Comprobante</div>
+                                            <div class="stepper-title">Archivos</div>
                                             <div class="stepper-status" v-text="statusFour"></div>
                                         </div>
                                     </div>
@@ -354,6 +371,35 @@ function getFileClaims(){
 
 }
 
+function getExistFiles(){
+    debugger
+
+    fetch('/api/claimsPayments/recordOfInsurancePayments.php', {
+        method: 'GET',
+    }).then(response => {
+        console.log("Respuesta cruda:", response);
+        if (!response.ok) {
+            throw new Error('Respuesta no OK del servidor: ' + response.status);
+        }
+        return response.json();
+    }).then(data => {
+        if (data.success) {
+            statuStep.value = 'Completado'
+            statusThree.value = 'Completado'
+            currentStep.value = 'confirm'
+            statusFour.value = 'Pendiente'
+        } else {
+            statuStep.value = 'Pendiente'
+            statusThree.value = 'Pendiente'
+            currentStep.value = 'review'
+        }
+    })
+    .catch(error => {
+        console.error('Error atrapado en catch:', error);
+        Swal.close();
+    });
+}
+
 const downloadUrl = computed(() => {
   if (!routetofile.value || !routetofile.value.route) return '';
   const fileName = routetofile.value.route.split('/').pop(); 
@@ -363,6 +409,7 @@ const downloadUrl = computed(() => {
 onMounted(() => {
     checkFile();
     getFileClaims()
+    getExistFiles();
 });
 
 

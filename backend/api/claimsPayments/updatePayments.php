@@ -17,7 +17,7 @@ if($func == 'updateInfoBase'){
 
     $year = date('Y');
     $month = date('m');
-    $select = $_POST['select'];
+    $select = $_POST['statusFiles'];
 
     $stmt_consult = $pdo->prepare("SELECT * FROM claims_approval_history WHERE YEAR(created_at_balances) = ? AND
             MONTH(created_at_balances) = ?");
@@ -53,7 +53,7 @@ if($func == 'updateInfoBase'){
             if($rowsAffected > 0){
                 echo json_encode([
                     'success' => true,
-                    'message' => 'Se aproboran correctamente los archivos.'
+                    'message' => 'Se aprobaron correctamente los archivos.'
                 ]);
         
             } else {
