@@ -1,11 +1,14 @@
 <template>
-    <div class="col-lg-11 mx-auto" style="margin-top: 55px;">
+    <div class="col-lg-11 mx-auto" style="margin-top: 115px;">
         <div class="row">
-            <div class="col-lg-6 mx-auto col-sm-12">
+
+            <div class="col-lg-5 mx-auto col-sm-12">
                 <div class="card shadow rounded" style="height: 360px;">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-4 col-sm-12 mx-auto">
+
+                            <!--Stepper-->
+                            <div class="col-lg-4 col-sm-12 mx-auto d-none">
 
                                 <div class="stepper-box">
                                     <div class="stepper-step" :class="getClass('upload')">
@@ -53,7 +56,31 @@
 
                             </div>
 
-                            <div class="col-lg-8 col-sm-12 mx-auto">
+                            <div class="col-lg-5 col-sm-12">
+                                <div class="border border-secondary border-2" style="border-radius: 5px;">
+                                    <div class="text-center">
+                                        <span class="text-uppercase" style="font-size: 12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                                            nomenclatura de archivos 
+                                        </span>
+                                    </div>
+
+                                    <ul>
+                                        <li>
+                                            Thano - thano_08_2025
+                                        </li>
+                                        <li>
+                                            Qualitas - qualitas_08_2025
+                                        </li>
+                                        <li>
+                                            Hdi - qualitas_08_2025
+                                        </li>
+                                        <li>
+                                            GNP - qualitas_08_2025
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-sm-12 mx-auto">
                                 <div class="text-center">
                                     <span class="text-uppercase" style="font-size: 14px; margin-left: 80px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">subir base</span>
                                 </div>
@@ -69,7 +96,7 @@
                                     </div>
                                         <label class="custom-file-upload">
                                             <input class="title" type="file" 
-                                                    accept=".xls, .xlsx"
+                                                    accept=".xls, .xlsx, .csv"
                                                     @change="selectUpload" id="dataBaseAon"/>
                                             Selecciona archivo...
                                             <p v-if="selectFileName" v-text="selectFileName" class="text-white fw-bolder"></p>
@@ -93,7 +120,79 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 mx-auto col-sm-12">
+
+            <div class="col-lg-5 mx-auto col-sm-12">
+                <div class="row">
+
+                    <!--Qualitas-->
+                    <div class="col-lg-6">
+                        <div class="card shadow rounded-15">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <span class="text-uppercase" style="font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                                        base qualitas
+                                    </span>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <img src="/img_aseguradoras/LOGO-QUALITAS.png" style="width: 170px; height: 150px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Thona-->
+                    <div class="col-lg-6">
+                        <div class="card shadow rounded-15">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <span class="text-uppercase" style="font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                                        base thona
+                                    </span>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <img src="/img_aseguradoras/thona.png" style="width: 150px; height: 150px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6 mt-5">
+                        <div class="card shadow rounded-15">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <span class="text-uppercase" style="font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                                        base hdi
+                                    </span>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <img src="/img_aseguradoras/HDI_Seguros.png" style="width: 150px; height: 150px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="card shadow rounded-15">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <span class="text-uppercase" style="font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                                        base GNP
+                                    </span>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <img src="/img_aseguradoras/gnp.jpg" style="width: 170px; height: 150px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mx-auto col-sm-12 d-none">
                 <div class="card shadow rounded">
                     <div class="card-body">
                       <div class="text-center">
@@ -195,9 +294,9 @@ function saveFileAon(){
     let file = document.getElementById('dataBaseAon').files[0];
     let formData = new FormData();
     formData.append('file', file);
-    formData.append('func', 'saveDataBase');
+    formData.append('func', 'insertInsurancePaths');
  
-    fetch('/api/dataBaseAon/insertDataFile.php', {
+    fetch('/api/insurances/save_insurance_data.php', {
         method: 'POST',
         body: formData
     })

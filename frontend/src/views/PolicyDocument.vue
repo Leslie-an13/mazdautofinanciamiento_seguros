@@ -15,7 +15,7 @@
 
 <script>
 import Swal from 'sweetalert2'
-import PaymentPolicyComponent from '../components/policy/PaymentPolicyComponent.vue'
+import PaymentPolicyComponent from '../components/insurances/PaymentPolicyComponent.vue'
 
 export default {
   components: { 

@@ -3,27 +3,27 @@
   <div style="background-color: rgb(222, 222, 222); height: 25px;">
         <i class="bi bi-caret-right"></i>
         <span class="text-uppercase fw-boldest" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',            'Lucida Sans', Arial, sans-serif; font-size: 11px;">
-            Aprobar datos
+            Aprobar aseguradoras
         </span>
   </div>
 
   <div class="row imgFondo">
-    <UploadDataBaseComponent  :getRouteFile="getFilePayment"
-                              :getRoute="getDataBase"  />
+    <ApproveInsuranceCompanyStatementsComponent  :getFilesInsurances="getFilesInsurances"
+                              />
   </div>
 </template>
 
 <script>
-import UploadDataBaseComponent from '../components/policy/UploadDataBaseComponent.vue';
+import ApproveInsuranceCompanyStatementsComponent from '../components/insurances/ApproveInsuranceCompanyStatementsComponent.vue';
 import Swal from 'sweetalert2';
 
 export default {
   components: {
-    UploadDataBaseComponent
+    ApproveInsuranceCompanyStatementsComponent
   },
   data() {
     return {
-      getFilePayment: {
+      getFilesInsurances: {
         exist: false,
         route: ''
       },
@@ -34,9 +34,9 @@ export default {
     }
   },
   methods: {
-    getRoute(){
+    getInsurances(){
      
-      fetch('/api/getPolicy/download_policy_payment_receipt.php', {
+      fetch('/api/insurances/download_files_of_insurances.php', {
           method: 'GET',
       }).then(response => {
           //console.log("Respuesta cruda:", response);
@@ -45,14 +45,15 @@ export default {
           }
           return response.json();
       }).then(data => {
+        debugger
 
           if(data.success){
-            this.getFilePayment.exist = true;
-            this.getFilePayment.route = data.file
+            this.getFilesInsurances.exist = true;
+            this.getFilesInsurances.route = data.files
               
           } else {
-            this.getFilePayment.exist = false;
-            this.getFilePayment.route = '';
+            this.getFilesInsurances.exist = false;
+            this.getFilesInsurances.route = '';
           }
       }).catch(error => {
           //console.error('Error atrapado en catch:', error);
@@ -90,8 +91,8 @@ export default {
   },
   mounted(){
 
-    this.getRoute();
-    this.getBase();
+    this.getInsurances();
+    //this.getBase();
 
       
   }

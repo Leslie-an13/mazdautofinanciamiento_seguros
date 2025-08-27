@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Dashboard from '../views/Dashboard.vue'
 import MainLayout from '../views/MainLayout.vue'
-import DamagePolicy from '../views/DamagePolicy.vue';
+import InsuranceFilesApproval from '../views/InsuranceFilesApproval.vue';
 import PolicyDocument from '../views/PolicyDocument.vue';
 import ClaimsModule from '../views/ClaimsModule.vue';
 import AccessDenied from '../views/AccessDenied.vue';
@@ -25,7 +25,7 @@ const routes = [
         component: Dashboard
     }]
   },
-  { path: '/damagePolicy', component: DamagePolicy,
+  { path: '/insuranceFilesApproval', component: InsuranceFilesApproval,
     component: MainLayout,
     meta: { 
       requiresAuth: true,
@@ -33,7 +33,7 @@ const routes = [
     },
     children: [{
       path: '',
-      component: DamagePolicy
+      component: InsuranceFilesApproval
     }]
   },
   { path: '/policyDocument', component: PolicyDocument,
