@@ -45,8 +45,7 @@ export default {
           }
           return response.json();
       }).then(data => {
-        debugger
-
+      
           if(data.success){
             this.getFilesInsurances.exist = true;
             this.getFilesInsurances.route = data.files
