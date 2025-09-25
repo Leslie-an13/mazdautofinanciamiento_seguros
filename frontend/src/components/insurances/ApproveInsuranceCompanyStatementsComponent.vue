@@ -73,15 +73,11 @@
                                 <div class="text-center">
                                     <span class="text-uppercase" style="font-size: 14px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">historial</span>
                                 </div>
-                                
-                                <template v-if="uploadFile != '' ">
-                                    <i class="bi bi-circle me-2" style="color: red;"></i>
-                                    <span class="text-dark" v-text="uploadFile"></span>
-                                </template>
-                                <br>
-                                <template v-if="approvedFile != '' ">
-                                    <i class="bi bi-circle me-2" style="color: red;"></i>
-                                    <span class="text-dark" v-text="approvedFile"></span>
+
+                                <template v-for="history in historyApproval">
+                                     <i class="bi bi-circle me-2" style="color: red;"></i>
+                                    <span class="text-dark" v-text="history.comments"></span>
+                                    <br>
                                 </template>
                                 
                             </div>
@@ -132,6 +128,8 @@
 </template>
 
 <script setup>
+import { onBeforeMount, ref, computed} from 'vue';
+import Swal from 'sweetalert2'
 
 const props = defineProps({
   getFilesInsurances: {
@@ -145,15 +143,15 @@ const props = defineProps({
 
 });
 
-import { onBeforeMount, ref, computed} from 'vue';
-import Swal from 'sweetalert2'
 
 const uploadFile = ref('');
 const approvedFile = ref('');
+const historyApproval = ref([])
 
 //Validar que debe seleccionar aseguradora
 function validateBase(){
     let select1 = document.getElementById('selectAp').value;
+    let valid = true;
 
     if(select1 == "0"){
         Swal.fire({
@@ -168,8 +166,10 @@ function validateBase(){
         valid = false;
         return;
     }
+    if(valid){
+        questionApproveBase();
+    }
 
-    questionApproveBase();
 }
 
 //Pregunta 
@@ -198,7 +198,6 @@ function saveApproved(){
 
     let select = document.getElementById('selectAp');
     let textSelect = select.options[select.selectedIndex].text;
-
     Swal.fire({
         title: "Procesando...",
         text: "Por favor, espera mientras se procesa la informacion.",
@@ -395,6 +394,26 @@ function savePaymentStatus(){
 
 //Obtener el historial 
 function getHistory(){
+    debugger
+
+    fetch('/api/insurances/approved_insurances_history.php', {
+        method: 'GET',
+    }).then(response => {
+        //console.log("Respuesta cruda:", response);
+        if (!response.ok) {
+            throw new Error('Respuesta no OK del servidor: ' + response.status);
+        }
+        return response.json();
+    }).then(data => {
+        if(data.success){
+            historyApproval.value = data.history; 
+        
+            console.log(historyApproval.value);
+        }
+    }).catch(error => {
+       // console.error('Error atrapado en catch:', error);
+        Swal.close();
+    });
 
 }
 

@@ -13,7 +13,7 @@ $func = $_POST['func'];
 
 if ($func == 'ApprovalInsurer') {
   
-    $insurer = $_POST['textSelect'];
+    $insurer = $_POST['insurer'];
 
     $stmt = $pdo->prepare("SELECT idUser, names , paternal_last_name, maternal_last_name FROM add_users WHERE idUser = :idUser");
             $stmt->execute([
@@ -35,14 +35,14 @@ if ($func == 'ApprovalInsurer') {
                     $insurer,
                     $_SESSION['user_id'],
                     1,
-                    'El usuario ' . $nombreCompleto . ' aprobo el archivo el ' . $insurer . date('Y-m-d H:i:s'),
+                    'El usuario ' . $nombreCompleto . ' aprobo el archivo el ' . $insurer . ' ' . date('Y-m-d H:i:s'),
                     $month,
                     $year 
                 ]);
 
         echo json_encode([
                 'success' => true,
-                'message' => 'Datos insertados correctamente.',
+                'message' => 'Datos aprobados correctamente' . ' ' .$insurer,
         ]);
 
 
